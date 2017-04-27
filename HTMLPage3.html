@@ -79,55 +79,11 @@
         <input id="btn" class="img" type="image" src="plus.png" height:32px" />
     </div>
     <div style="text-align:center">
-	<a href="HTMLPage1.html"><h1 style="color:midnightblue">Kalkulator</h1></a>
+	<a href="index.html"><h1 style="color:midnightblue">Kalkulator</h1></a>
 	</div>
-	<button onclick="notifyMe()">Notify me!</button>
+	
     <script src="Script1.js"></script>
-   <script>
-   
- function notifyMe() {
-  // Let's check if the browser supports notifications
-  if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
-  }
-
-  // Let's check whether notification permissions have already been granted
-  else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    for(var i=0;i<20;i++){
-	  
-        var notification = new Notification('WEB PAGE', {
-      
-      icon: 'http://www.imagenspng.com.br/wp-content/uploads/2015/07/minions-02.png',
-      body: "Ovo je notifikacija sa strnice!",
-    });
-	  }
-  }
-
-  // Otherwise, we need to ask the user for permission
-  else if (Notification.permission !== "denied") {
-    Notification.requestPermission(function (permission) {
-      // If the user accepts, let's create a notification
-      if (permission === "granted") {
-	  for(var i=0;i<20;i++){
-	  
-        var notification = new Notification('WEB PAGE', {
-      
-      icon: 'http://www.imagenspng.com.br/wp-content/uploads/2015/07/minions-02.png',
-      body: "Ovo je notifikacija sa strnice!",
-    });
-	  }
-	  
-	
-      }
-    });
-  }
-	
-  // At last, if the user has denied notifications, and you 
-  // want to be respectful there is no need to bother them any more.
-}
-   
-   </script>
+  
 </body>
 
 
