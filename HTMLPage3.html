@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title>Studenti FIT-a</title>
+    <style>
+     
+  th,td{
+    padding:15px;
+    }
+	
+	tr:nth-child(even){
+	 background-color: #cccccc;
+	}
+	tr:nth-child(odd){
+	 background-color: #efefef;
+	}
+
+	.img:hover{
+   
+     height:50px;
+}
+ 
+    </style>
+  
+        <script src="jquery-3.2.0.min.js"></script>
+
+</head>
+<body onload="notifyMe()">
+
+    <div style="text-align:center; padding:15px 0 15px 0">
+        <h1 style="color:midnightblue">
+            Fakultet Informacijskih Tehnologija
+        </h1>
+    </div>
+    <div style="text-align:center"; padding:15px 0 15px 0">
+        <form>
+            <input style="width:123px" type="text" name="Inpime" id="InpName" placeholder="Ime" required autofocus />
+            <input style="width:123px" type="text" id="InpLaName" placeholder="Prezime" required />
+            <input style="width:123px" type="text" id="InpTitula" placeholder="Titula" required />
+            <input style="width:50px" type="text" id="InpGodina" placeholder="Godina" />
+            <div style="text-align:center; padding-top:15px">
+                <input id="Add" class="img" type="image" src="plus.png" height:32px" />
+            </div>
+
+        </form>
+       
+    </div>
+    <div id="students">
+        <table id="Table" cellspacing="1" align="center">
+
+            <tr>
+
+                <th>
+                    Rbr
+                </th>
+                <th>
+                    Ime
+                </th>
+                <th width="150px">
+                    Prezime
+                </th>
+                <th>
+                    Titula
+                </th>
+                <th>
+                    Godina
+                </th>
+            </tr>
+
+
+
+        </table>
+
+    </div>
+    <div style="text-align:center"; padding-top:15px">
+        <input id="btn" class="img" type="image" src="plus.png" height:32px" />
+    </div>
+    <div style="text-align:center">
+	<a href="HTMLPage1.html"><h1 style="color:midnightblue">Kalkulator</h1></a>
+	</div>
+	<button onclick="notifyMe()">Notify me!</button>
+    <script src="Script1.js"></script>
+   <script>
+   
+ function notifyMe() {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    for(var i=0;i<20;i++){
+	  
+        var notification = new Notification('WEB PAGE', {
+      
+      icon: 'http://www.imagenspng.com.br/wp-content/uploads/2015/07/minions-02.png',
+      body: "Ovo je notifikacija sa strnice!",
+    });
+	  }
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+	  for(var i=0;i<20;i++){
+	  
+        var notification = new Notification('WEB PAGE', {
+      
+      icon: 'http://www.imagenspng.com.br/wp-content/uploads/2015/07/minions-02.png',
+      body: "Ovo je notifikacija sa strnice!",
+    });
+	  }
+	  
+	
+      }
+    });
+  }
+	
+  // At last, if the user has denied notifications, and you 
+  // want to be respectful there is no need to bother them any more.
+}
+   
+   </script>
+</body>
+
+
+</html>
