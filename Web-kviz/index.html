@@ -34,8 +34,8 @@
 
             <select id="opcija" class="form-control">
             <option>WRD</option>
-            <option>IT</option>
-            <option disabled>RM</option>
+            <option disabled>IT | Uskoro</option>
+            <option disabled>RM | Uskoro</option>
             </select>
 
 
@@ -200,17 +200,41 @@
         }
         function kraj() {
             TacanO = TacanO * 5;
+            var Stile;
 
             //   document.getElementById("PanelBody").remove();
-            var contentKraj = "<div class='panel panel-success'>" +
-                "<div class='panel-heading'>Cestitamo Zavrsili ste kviz</div>" +
-                "<div class='panel-body'>Bodovi: " + TacanO + "</div> </div>" +
-                "<div class='col-xs - 12 col-sm - 12 col-md - 12 col-lg - 12'>" +
+                var ukupno=ourData.length;
+                var prolaz;
+                if((ukupno*5)/2<=TacanO){
+                    prolaz="Cestitamo prosli ste!"
+                    Stile="panel-success";
+                }
+                else{
+                  prolaz="Zao nam je pokusajte opet!"
+                    Stile="panel-danger";
+
+                }
+                
+                
+                ukupno=(TacanO/(ukupno*5))*100;
+
+                 var content2 = "<div id='PanelBody' class='col-xs-12 col-sm-12 col-md-12 col-lg-12' style='margin: 20px auto'>" +
+                "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>" +
+                "</div> <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6'>" +
+                "<div class='panel "+Stile+"'>" +
+                "<div class='panel-heading'> <h4><strong>Zavrsili ste kviz! </strong></h4> </div>" +
+                "<div class='panel-body'> Ukupno osvojenih bodova:  <h5><strong>" +TacanO +
+                "</strong></h5> <br> Broj tacno odgovorenih pitanja: <h5><strong> "+ TacanO/5 +" </strong></h5> <br> "+
+                "<h5>Predmet: <strong>"+opcijaa+"</strong></h5>"+
+                "<h5>Prolaznost (vise od 50%): <strong>"+ukupno+"% | "+prolaz+"</strong></h5>"+
+                " <div style='margin-top:80px' class='col-xs - 12 col-sm - 12 col-md - 12 col-lg - 12'>" +
                 "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>" +
                 "</div> <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6'>" +
                 "<button type='button' onclick='reloadPage()' class='btn btn-lg btn-success  btn-block'> Play again </button>" +
-                "</div> <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'> </div>   </div>";
-            document.getElementById('umetni').innerHTML = contentKraj;
+                "</div> <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'></div> </div> ";
+           
+            document.getElementById('umetni').innerHTML = content2;
+            
 
         }
     </script>
