@@ -40,7 +40,7 @@
      </div> 
      
      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <button type="button" id="btn" class="btn btn-lg btn-danger  btn-block"> Start </button>
+    <button type="button" id="btn" class="btn btn-lg btn-success  btn-block"> Start </button>
          
      </div>
      
@@ -91,7 +91,7 @@
             ++BrPitnanje;
             var odgovoriPanel= "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>" +
                 "<!--pitanja-->" +
-                "<h4>" + ourData[BrPitnanje].Pitanje + " ?</h4>" +
+                "<h4>" + ourData[BrPitnanje].Pitanje + "</h4>" +
                 "<!-- odgovori-->" +
                 "<div style='margin-left: 5px' class='col-xs-5 col-sm-5 col-md-5 col-lg-5'>" +
                 "<div class='radio'>" +
@@ -116,7 +116,7 @@
         function funk(ClickedID) {
 
             document.getElementById(ClickedID).remove();
-            if (BrPitnanje ==2) {
+            if (BrPitnanje ==(ourData.length)-1) {
                 kraj();
             }
             else
