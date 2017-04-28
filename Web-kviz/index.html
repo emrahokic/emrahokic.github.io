@@ -32,25 +32,25 @@
 
     </div>
 
- 
- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-     
-     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-         
-     </div> 
-     
-     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <button type="button" id="btn" class="btn btn-lg btn-success  btn-block"> Start </button>
-         
-     </div>
-     
-     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-         
-     </div>
-     
-     
- </div>
- 
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" id="btn" class="btn btn-lg btn-success  btn-block"> Start </button>
+
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+        </div>
+
+
+    </div>
+
 
 
     <script>
@@ -60,7 +60,7 @@
         btn.addEventListener("click", function () {
 
 
-             btn.remove();
+            btn.remove();
             var ourRequest = new XMLHttpRequest();
             ourRequest.open('GET',
                 'https://raw.githubusercontent.com/emrahokic/Web1/master/pitanja.json');
@@ -89,46 +89,77 @@
 
         function unsoPitanja() {
             ++BrPitnanje;
-            var odgovoriPanel= "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>" +
+            var odgovoriPanel = "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>" +
                 "<!--pitanja-->" +
                 "<h4>" + ourData[BrPitnanje].Pitanje + "</h4>" +
                 "<!-- odgovori-->" +
                 "<div style='margin-left: 5px' class='col-xs-5 col-sm-5 col-md-5 col-lg-5'>" +
                 "<div class='radio'>" +
                 "<label style='padding: 15px'>" +
-                "<input type='radio' name='odgovor' id='' value='' >" +
+                "<input type='radio' name='odgovor' id='r1' value='" + ourData[BrPitnanje].Odgovori[0] + "' >" +
                 ourData[BrPitnanje].Odgovori[0] +
                 "</label ><br>" +
                 "<label style='padding: 15px'>" +
-                "<input type='radio' name='odgovor' id='' value=''>" +
-                ourData[BrPitnanje].Odgovori[1]  +
+                "<input type='radio' name='odgovor' id='r2' value='" + ourData[BrPitnanje].Odgovori[1] + "'>" +
+                ourData[BrPitnanje].Odgovori[1] +
                 "</label > <br>" +
                 "<label style='padding: 15px'>" +
-                "<input type='radio' name='odgovor' id='' value=''>" +
-                ourData[BrPitnanje].Odgovori[2] +"</label> <br> </div> </div> </div>";
+                "<input type='radio' name='odgovor' id='r3' value='" + ourData[BrPitnanje].Odgovori[2] + "'>" +
+                ourData[BrPitnanje].Odgovori[2] + "</label> <br> </div> </div> </div>";
+
             return (odgovoriPanel);
         }
 
 
         // panelbody **************************************************************
         var i = 0;
+        var TacanO = 0;
 
         function funk(ClickedID) {
+            // provjera tacnog odgovora
+            if (document.getElementById('r1').checked) {
+                if (document.getElementById('r1').value == ourData[BrPitnanje].TacanOdgovor) {
+                    TacanO++;
+                }
 
+            }
+            if (document.getElementById('r2').checked) {
+                if (document.getElementById('r2').value == ourData[BrPitnanje].TacanOdgovor) {
+                    TacanO++;
+
+                }
+
+            }
+            if (document.getElementById('r3').checked) {
+                if (document.getElementById('r3').value == ourData[BrPitnanje].TacanOdgovor) {
+                    TacanO++;
+                }
+
+            }
+            // uklanjanje panela
             document.getElementById(ClickedID).remove();
-            if (BrPitnanje ==(ourData.length)-1) {
+            // provjeravanje jel kraj
+            if (BrPitnanje == (ourData.length) - 1) {
                 kraj();
             }
             else
                 setTimeout(CreateNew, 500);
         }
         function kraj() {
+            TacanO = TacanO * 5;
             var contentKraj = "<div class='panel panel-success'>" +
                 "<div class='panel-heading'>Cestitamo Zavrsili ste kviz</div>" +
-                "<div class='panel-body'>Bodovi: </div>" +
-                "</div>"
+                "<div class='panel-body'>Bodovi: " + TacanO + "</div> </div>" +
+                "<div class='col-xs - 12 col-sm - 12 col-md - 12 col-lg - 12'>" +
+                "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>" +
+                "</div> <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6'>" +
+                "<button type='button' onclick='reloadPage()' class='btn btn-lg btn-success  btn-block'> Play again </button>"+
+                 "</div> <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'> </div>   </div>";
             document.getElementById('umetni').innerHTML = contentKraj;
 
+        }
+        function reloadPage() {
+            location.reload();
         }
         function CreateNew() {
             i++;
@@ -147,6 +178,7 @@
                 "<button  style='float: right' type='button' onclick='funk(PanelBody.id)' class='btn btn-success'>Slijedece pitanje</button> </div>  </div> </div>  </div> </div>" +
                 "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'> </div> </div>";
             document.getElementById('umetni').innerHTML = content;
+
         }
     </script>
 
