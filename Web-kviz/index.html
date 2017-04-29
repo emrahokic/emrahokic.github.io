@@ -316,7 +316,6 @@
 
             document.getElementById('umetni').innerHTML = content2;
             pozivfunkcije(ImeIgraca,opcijaa,ukupno,TacanO);
-
         }
     </script>
     	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
@@ -338,12 +337,14 @@
     var rootIgraci = firebase.database().ref().child("Igraci");
 
     rootIgraci.on("child_added", snap => {
-         setTimeout(1000);
+      
          var IgracIme= snap.child("Ime").val();
-         var IgracOpcija= snap.child("Opcija").val();
-         var IgracBodovi= snap.child("Bodovi").val();
-         var IgracProcenti= snap.child("Procenti").val();
-          $("#tabelaIgraca").append("<tr><td>"+ IgracIme +"</td><td>"+ IgracOpcija +"</td><td>"+ IgracBodovi +"</td><td>"+ IgracProcenti +"</td></tr>");
+         var IgracOpcija= setTimeout(5,snap.child("Opcija").val());
+         var IgracBodovi=  setTimeout(5, snap.child("Bodovi").val());
+         var IgracProcenti= setTimeout(5, snap.child("Procenti").val());
+         
+         dodajj(IgracIme,IgracOpcija,IgracBodovi,IgracProcenti);
+         
          
     });
      var rootRef = firebase.database().ref().child("RedniBr");
@@ -351,6 +352,16 @@
     rootRef.on("child_added", snap => {
          namee= snap.child("Rbr").val();
     });
+    function dodajj(I,O,B,P){
+       
+        
+         $("#tabelaIgraca").append("<tr><td>"+ I +"</td><td>"+ O +"</td><td>"+ B +"</td><td>"+ P +"</td></tr>");
+        console.log(B);
+        console.log(I);
+        console.log(O);
+        console.log(P);
+
+    }
 
 
    
