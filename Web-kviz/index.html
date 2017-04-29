@@ -57,7 +57,7 @@
             <select id="opcija" class="form-control">
             <option>WRD</option>
             <option>IT</option>
-            <option disabled>RM | Uskoro</option>
+            <option>RM</option>
             </select>
 
 
@@ -121,6 +121,9 @@
             }
             if (opcijaa == "IT") {
                 JsonFile = "https://raw.githubusercontent.com/emrahokic/Web1/master/pitanja2.json";
+            }
+            if (opcijaa == "RM") {
+                JsonFile = "https://raw.githubusercontent.com/emrahokic/Web1/master/pitanja3.json";
             }
             btn.remove();
             opcijaID.remove();
