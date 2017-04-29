@@ -339,9 +339,9 @@
     rootIgraci.on("child_added", snap => {
       
          var IgracIme= snap.child("Ime").val();
-         var IgracOpcija= setTimeout(5,snap.child("Opcija").val());
-         var IgracBodovi=  setTimeout(5, snap.child("Bodovi").val());
-         var IgracProcenti= setTimeout(5, snap.child("Procenti").val());
+         var IgracOpcija=snap.child("Opcija").val();
+         var IgracBodovi= snap.child("Bodovi").val();
+         var IgracProcenti=snap.child("Procenti").val();
          
          dodajj(IgracIme,IgracOpcija,IgracBodovi,IgracProcenti);
          
