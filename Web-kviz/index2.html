@@ -19,34 +19,29 @@
         <script>
            
         </script>
-       
 </head>
 
 <body>
-
          <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <!--<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 id="nestonesto" class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-                <h4>Unesite svoje Ime:</h4>       
-        <input type="text" name="" id="Ime" class="form-control" value="" required="required" placeholder="Ime" pattern="" title="">
-        
-         
+          <p>This is a large modal.</p>
         </div>
         <div class="modal-footer">
-          <button type="submit" id="btn" class="btn btn-default" data-dismiss="modal">Start</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px; text-align: center">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center">
         <h2 style="color: rgb(51, 122, 183)">
             FIT | <small style="color: rgb(51, 122, 183)"> Kviz znanja </small>
         </h2>
@@ -96,48 +91,17 @@
         </div>
 
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" id="btn2"  class="btn btn-lg btn-success  btn-block" data-toggle="modal" data-target="#myModal"> Start </button>
+            <button type="button" id="btn" class="btn btn-lg btn-success  btn-block" data-toggle="modal" data-target="#myModal"> Start </button>
 
         </div>
 
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
         </div>
-    </div>
-  
-               
 
-    <div style="margin-top: 150px" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    
-    <div  class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-        
+
     </div>
-     
-     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-         
-         <table   class="table table-striped table-hover">
-              <caption><h1><strong>Lista igrača:</strong></h1></caption>
-             <thead>
-                 <tr>
-                     <th>Ime</th>
-                     <th>Opcija</th>
-                     <th>Bodovi</th>
-                     <th>Procenti</th>
-                     
-                 </tr>
-             </thead>
-             <tbody id="tabelaIgraca">
-                 
-             </tbody>
-         </table>
-         
-     </div>
-     
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-        
-    </div>
-    </div>
-    
+
 
 
     <script>
@@ -145,14 +109,12 @@
         var ourData;
         var opcijaa;
         var btn = document.getElementById("btn");
-        var btn2= document.getElementById("btn2");
         var opcijaID = document.getElementById("opcija");
-        var ImeIgraca;
-        
+
+
         var JsonFile;
 
         btn.addEventListener("click", function () {
-            ImeIgraca= document.getElementById("Ime").value;
             opcijaa = document.getElementById("opcija").value;
             if (opcijaa == "WRD") {
                 JsonFile = "https://raw.githubusercontent.com/emrahokic/Web1/master/pitanja.json";
@@ -163,7 +125,7 @@
             if (opcijaa == "RM") {
                 JsonFile = "https://raw.githubusercontent.com/emrahokic/Web1/master/pitanja3.json";
             }
-            btn2.remove();
+            btn.remove();
             opcijaID.remove();
             var ourRequest = new XMLHttpRequest();
             ourRequest.open('GET', JsonFile);
@@ -315,69 +277,10 @@
                 "</div> <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'></div> </div> ";
 
             document.getElementById('umetni').innerHTML = content2;
-            pozivfunkcije(ImeIgraca,opcijaa,ukupno,TacanO);
+
 
         }
     </script>
-    	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyA_bs1WUi8gAL462PRUtL09X_UkZFkQgiE",
-    authDomain: "webkviz-674e7.firebaseapp.com",
-    databaseURL: "https://webkviz-674e7.firebaseio.com",
-    projectId: "webkviz-674e7",
-    storageBucket: "webkviz-674e7.appspot.com",
-    messagingSenderId: "350021617085"
-  };
-  firebase.initializeApp(config);
-</script>
-
-
-<script>
-    var rootIgraci = firebase.database().ref().child("Igraci");
-
-    rootIgraci.on("child_added", snap => {
-         setTimeout(1000);
-         var IgracIme= snap.child("Ime").val();
-         var IgracOpcija= snap.child("Opcija").val();
-         var IgracBodovi= snap.child("Bodovi").val();
-         var IgracProcenti= snap.child("Procenti").val();
-          $("#tabelaIgraca").append("<tr><td>"+ IgracIme +"</td><td>"+ IgracOpcija +"</td><td>"+ IgracBodovi +"</td><td>"+ IgracProcenti +"</td></tr>");
-         
-    });
-     var rootRef = firebase.database().ref().child("RedniBr");
-     var namee;
-    rootRef.on("child_added", snap => {
-         namee= snap.child("Rbr").val();
-    });
-
-
-   
-</script>
-
-    <script> 
-    var mainText="FirstFirst";
-    var subBtn=document.getElementById("fireBtn");
-  
-
-    function pozivfunkcije(ImeDB,OpcijaDB,UkupnoDB,TacanDB){
-         namee++;
-         var imeIgracaDB="Igrac "+namee;
-         var firebaseRef= firebase.database().ref("Igraci").child(imeIgracaDB);
-         var dodajrbr=firebase.database().ref("RedniBr").child("RedniB");
-         dodajrbr.child("Rbr").set(namee);
-         firebaseRef.child("Ime").set(ImeDB);
-         firebaseRef.child("Opcija").set(OpcijaDB);
-         firebaseRef.child("Bodovi").set(TacanDB);
-         UkupnoDB=UkupnoDB+"%";
-         firebaseRef.child("Procenti").set(UkupnoDB);
-       
-       
-
-    }
-    </script>
-
 
 </body>
 
