@@ -59,36 +59,39 @@
 
 <body>
 
-    <div style="margin-top: 150px" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div style="margin-top: 150px" class="col-sm-12 col-md-12 ">
 
+        
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            
         </div>
-
-        <div style="padding: 10px; box-shadow: 2px 2px 20px lightblue; border-radius: 10px; height: 680px" class="row col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        
+        <div style="padding: 10px; box-shadow: 2px 2px 20px lightblue; border-radius: 10px; height: 680px" class="col-sm-3 col-md-3">
 
 
 
             <input type="text" name="" id="Ime" class="form-control" placeholder="Ime" value="" required="required" pattern="" title="">
 
 
-            <div id="insert" style="overflow-y: scroll;border-bottom: 1px solid lightblue;box-shadow: 1px 1px 2px lightblue; border-radius: 10px; height: 550px"
-                class="divv col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="insert" style="overflow-y: scroll;border-bottom: 1px solid lightblue;box-shadow: 1px 1px 2px lightblue;margin: 0 auto; border-radius: 10px; height: 550px"
+                class="divv col-sm-12 col-md-12 ">
 
 
             </div>
 
             <div style="border-radius: 10px;border-bottom: 1px solid lightblue;box-shadow: 1px 1px 2px lightblue;margin-top: 10px;height: 50px"
-                class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                class=" col-sm-12 col-md-12 ">
 
-                <input autofocus style="width: 100%;height: 100%" type="text" onkeypress="dodajj(event)" name="" placeholder="Poruka..."
+                <input autofocus style="width: 85%;height: 100%" type="text" onkeypress="dodajj(event)" name="" placeholder="Poruka..."
                     id="poruka" class="" pattern="" title="">
-
+                <img onclick="posalji()" style="cursor:pointer;height: 50px" src="Right-104.png" alt="send">
+                    
             </div>
 
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <!--<div class=" col-sm-2 col-md-2">
 
                 <img onclick="posalji()" style="cursor:pointer;margin-top:11px;height: 50px" src="Right-104.png" alt="send">
-            </div>
+            </div>-->
 
 
 
@@ -96,8 +99,7 @@
         </div>
 
 
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        </div>
+       
     </div>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
     <script>
