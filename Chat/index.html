@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+
+    </style>
+    <style>
+        /* Let's get this party started */
+        
+         ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        input {
+            background-color: transparent;
+            border: 0px solid;
+            height: 20px;
+            width: 160px;
+            outline: none;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: lightblue;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+        
+         ::-webkit-scrollbar-thumb:window-inactive {
+            background: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="margin-top: 150px" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        </div>
+
+        <div style="padding: 10px; box-shadow: 2px 2px 20px lightblue; border-radius: 10px; height: 680px" class="row col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+
+            
+            <!--<input type="text" name="" id="Ime" class="form-control" placeholder="Ime" value="" required="required" pattern="" title="">-->
+            
+
+            <div id="insert" style="overflow-y: scroll;border-bottom: 1px solid lightblue;box-shadow: 1px 1px 2px lightblue; border-radius: 10px; height: 550px"
+                class="divv col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+            </div>
+
+            <div style="border-radius: 10px;border-bottom: 1px solid lightblue;box-shadow: 1px 1px 2px lightblue;margin-top: 10px;height: 50px"
+                class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+
+                <input autofocus style="width: 100%;height: 100%" type="text" onkeypress="dodajj(event)" name="" placeholder="Poruka..."
+                    id="poruka" class="" pattern="" title="">
+
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+                <img onclick="posalji()" style="cursor:pointer;margin-top:11px;height: 50px" src="Right-104.png" alt="send">
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+                              // Initialize Firebase
+                              var config = {
+                                  apiKey: "AIzaSyAUlOEOZLmu3kzRlq2pQuqgbb8z8fxyqC0",
+                                  authDomain: "chat-545cf.firebaseapp.com",
+                                  databaseURL: "https://chat-545cf.firebaseio.com",
+                                  projectId: "chat-545cf",
+                                  storageBucket: "chat-545cf.appspot.com",
+                                  messagingSenderId: "818374521436"
+                              };
+                              firebase.initializeApp(config);
+
+                              var rootPoruke = firebase.database().ref("Poruke");
+
+                              rootPoruke.on("child_added", snap => {
+
+                                  var PorukaFrom = snap.child("Poruka").val();
+                                  console.log(PorukaFrom);
+                                  console.log("h")
+                                  dodaj(PorukaFrom);
+
+
+                              });
+
+                              var textBox = document.getElementById("poruka");
+                              function posalji() {
+
+                                  var posaljiPoruku = firebase.database().ref("Poruke").push();
+                                  posaljiPoruku.child("Poruka").set(textBox.value);
+
+                              }
+    </script>
+    <script>
+            var ime=document.getElementById("Ime").value;
+                              function dodajj(e) {
+                                  if (e.keyCode === 13) {
+                                      e.preventDefault(); // Ensure it is only this code that rusn
+
+                                      posalji();
+                                  }
+                              }
+                              function dodaj(P) {
+                                
+                                 var poruka = " <div style='margin: 10px auto 10px;word-break: break-all; border-radius:10px ;word-wrap: break-word;background-color: lightblue;' class='col-xs-12 col-sm-12 col-md-12 col-lg-12' >" +
+                                      " <p style='padding: 10px 0px 10px 3px'>" + P + " </p>" +
+                                      " </div>";
+                                  document.getElementById("insert").innerHTML += poruka;
+                                  document.getElementById("poruka").value = null;
+                                  document.getElementById("poruka").focus();
+
+                              }
+    </script>
+
+
+
+</body>
+
+</html>
