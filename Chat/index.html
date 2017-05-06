@@ -64,12 +64,12 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         </div>
 
-        <div style="padding: 10px; box-shadow: 2px 2px 20px lightblue; border-radius: 10px; height: 640px" class="row col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div style="padding: 10px; box-shadow: 2px 2px 20px lightblue; border-radius: 10px; height: 680px" class="row col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
 
-            
-            <!--<input type="text" name="" id="Ime" class="form-control" placeholder="Ime" value="" required="required" pattern="" title="">-->
-            
+
+            <input type="text" name="" id="Ime" class="form-control" placeholder="Ime" value="" required="required" pattern="" title="">
+
 
             <div id="insert" style="overflow-y: scroll;border-bottom: 1px solid lightblue;box-shadow: 1px 1px 2px lightblue; border-radius: 10px; height: 550px"
                 class="divv col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -117,24 +117,41 @@
                               rootPoruke.on("child_added", snap => {
 
                                   var PorukaFrom = snap.child("Poruka").val();
-                                 
-                                  dodaj(PorukaFrom);
+                                  var ImeFDB =snap.child("Ime").val();
+                                  dodaj(PorukaFrom,ImeFDB);
 
 
                               });
 
+                              var imedb;
                               var textBox = document.getElementById("poruka");
                               function posalji() {
-                                    if(textBox.value!=""){
+                                  if (textBox.value != "") {
+                                     imedb=document.getElementById("Ime").value;
+                                     document.getElementById("Ime").disabled = true;
+                                     if(imedb===""){
+                                         alert("Napisite svoje ime!!!")
+                                     }
+                                     else{
 
-                                  var posaljiPoruku = firebase.database().ref("Poruke").push();
-                                  posaljiPoruku.child("Poruka").set(textBox.value);
-                                    }
+                                      firebase.database().ref("Poruke").push().set({
+                                         Poruka: textBox.value,
+                                         Ime: imedb
+                                      });
+                                     }
+                                    //   var posaljiPoruku = firebase.database().ref("Poruke").push();
+                                    //   posaljiPoruku.child("Poruka").set(textBox.value);
+
+
+
+
+                                  }
+
+
 
                               }
     </script>
     <script>
-            var ime=document.getElementById("Ime").value;
                               function dodajj(e) {
                                   if (e.keyCode === 13) {
                                       e.preventDefault(); // Ensure it is only this code that rusn
@@ -142,10 +159,10 @@
                                       posalji();
                                   }
                               }
-                              function dodaj(P) {
-                                
-                                 var poruka = " <div style='margin: 10px auto 10px; border-radius:10px ;word-wrap: break-word;background-color: lightblue;' class='col-xs-12 col-sm-12 col-md-12 col-lg-12' >" +
-                                      " <p style='padding: 10px 0px 10px 3px'>" + P + " </p>" +
+                              function dodaj(P,I) {
+
+                                  var poruka = " <div style='margin: 10px auto 10px; border-radius:10px ;word-wrap: break-word;background-color: lightblue;' class='col-xs-12 col-sm-12 col-md-12 col-lg-12' >" +
+                                      "<strong>"+ I +"</strong> <br> <p style='padding: 10px 0px 10px 3px'>" + P + " </p>" +
                                       " </div>";
                                   document.getElementById("insert").innerHTML += poruka;
                                   document.getElementById("poruka").value = null;
