@@ -163,9 +163,9 @@
                               }
                               function dodaj(P, I) {
                                 
-                                  var poruka = " <div style='margin: 10px auto 10px; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;border-top-right-radius: 10px;word-wrap: break-word;background-color: lightblue;' class='col-xs-12 col-sm-12 col-md-12 col-lg-12' >" +
-                                      "<strong>" + I + "</strong> <br> <p style='padding: 10px 0px 10px 3px'>" + P + " </p>" +
-                                      " </div>";
+                                  var poruka = " <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12' >" +
+                                      "<div style='padding:2px 5px 0px 5px;;display:inline-block;margin: 5px auto 10px; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;border-top-right-radius: 10px;word-wrap: break-word;background-color: lightblue;' ><strong>" + I + "</strong> <br> <p style='display:inline-block;padding: 10px 0px 10px 3px'>" + P + " </p>" +
+                                      " </div></div>";
                                   document.getElementById("insert").innerHTML += poruka;
                                   document.getElementById("poruka").value = null;
                                   document.getElementById("poruka").focus();
