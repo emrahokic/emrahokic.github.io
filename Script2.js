@@ -2,10 +2,6 @@
 
 
 
-
-
-
-
 var bt1 = document.getElementById("Asaberi");
 var bt2 = document.getElementById("Bsaberi");
 var bt3 = document.getElementById("Csaberi");
