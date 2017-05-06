@@ -32,17 +32,17 @@
     <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"> <span style="color: rgb(51, 122, 183)"> <strong>FIT | Web-Kviz</strong> </span></a>
+                <a class="navbar-brand" href="../index.html"> <span style="color: rgb(51, 122, 183)"> <strong>FIT | Web-Kviz</strong> </span></a>
             </div>
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="#"> <strong> | </strong> </a>
+                    <a href=""> <strong> | </strong> </a>
                 </li>
-                <li id="li1" onclick="func(this.id)" class="active">
-                    <a href="#"> <strong> Dodavanje pitanja </strong> </a>
+                <li id="li1" class="active">
+                    <a href="index.html"> <strong> Dodavanje pitanja </strong> </a>
                 </li>
-                <li id="li2" onclick="func(this.id)" class="">
-                    <a href="#"> <strong>Uvid u pitanja</strong> </a>
+                <li id="li2" class="">
+                    <a href="index2.html"> <strong>Uvid u pitanja</strong> </a>
                 </li>
 
             </ul>
@@ -83,29 +83,29 @@
 
                 <div class="row">
                     <br>
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-10 col-md-10">
                         <div id="g1" class="input-group">
                             <span class="input-group-addon"><input onchange="provjera()"  id="Todg1" name="odgovor" type="radio" aria-label="..."></span>
-                            <input id="odgovor1" type="text" class="form-control" aria-label="...">
+                            <input id="odgovor1" type="text" class="form-control" placeholder="Odgovor #1" aria-label="...">
                         </div>
                         <!-- /input-group -->
                     </div>
 
                     <br>
                     <br>
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-10 col-md-10">
                         <div id="g2" class="input-group">
                             <span class="input-group-addon"><input onchange="provjera()" id="Todg2" name="odgovor" type="radio" aria-label="..."></span>
-                            <input id="odgovor2" type="text" class="form-control" aria-label="...">
+                            <input id="odgovor2" type="text" class="form-control" placeholder="Odgovor #2" aria-label="...">
                         </div>
                         <!-- /input-group -->
                     </div>
                     <br>
                     <br>
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-10 col-md-10">
                         <div id="g3" class="input-group">
                             <span class="input-group-addon"><input onchange="provjera()" id="Todg3" name="odgovor" type="radio" aria-label="..."></span>
-                            <input id="odgovor3" type="text" class="form-control" aria-label="...">
+                            <input id="odgovor3" type="text" class="form-control" placeholder="Odgovor #3" aria-label="...">
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -126,6 +126,10 @@
 
 
     <script>
+//         if ('Hello, World?'.indexOf('?') !== -1)
+//     alert("The string 'Hello World' contains the substring 'orl'!");
+// else
+//     alert("The string 'Hello World' does not contain the substring 'orl'!");
 
         function provjera(){
 
@@ -159,6 +163,7 @@
                                       var PitanjeDB;
                                       var BrPitanjaDB;
                                       var KategorijaDB;
+                                      var BrPPKDB;
                                       var i = 1;
 
                                       //navigacija active/inactive
@@ -176,6 +181,7 @@
                                           if (i == 1) {
                                               if (document.getElementById("BrPitanja").value != "-> Koliko zelite pitanja?")
                                                   BrPitanjaDB = document.getElementById("BrPitanja").value;
+                                                  BrPPKDB=BrPitanjaDB;
 
                                               //Kategorija
                                               KategorijaDB = document.getElementById("Kategorija").value;
@@ -196,7 +202,7 @@
                                           var Todg3 = document.getElementById("Todg3").checked;
                                           if (Todg1) {
                                               TacanOdgovorDB = document.getElementById("odgovor1").value;
-                                              document.getElementById("g1").className += " shadow";
+                                            //   document.getElementById("g1").className += " shadow";
                                           }
                                           if (Todg2) {
                                               TacanOdgovorDB = document.getElementById("odgovor2").value;
@@ -239,15 +245,81 @@
                                                 if(i==(BrPitanjaDB)){
                                                     document.getElementById("content").remove;
                                                     document.getElementById("content").innerHTML="<h1 style='text-align: center'>Uspjesno ste unijeli pitanja!</h1>";
-                                                    
-
-                                             }
+                                                 }
+                                                 dodavanjeUDB(KategorijaDB,BrPitanjaDB,PitanjeDB,Odgovor1DB,Odgovor2DB,Odgovor3DB,TacanOdgovorDB,i);
                                                 i++;
         
                                           }
 
                                       });
     </script>
+     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA_bs1WUi8gAL462PRUtL09X_UkZFkQgiE",
+            authDomain: "webkviz-674e7.firebaseapp.com",
+            databaseURL: "https://webkviz-674e7.firebaseio.com",
+            projectId: "webkviz-674e7",
+            storageBucket: "webkviz-674e7.appspot.com",
+            messagingSenderId: "350021617085"
+        };
+        firebase.initializeApp(config);
+
+       
+       var rootRef = firebase.database().ref().child("RedniBrKategorije");
+        var namee;
+        rootRef.on("child_added", snap => {
+            namee = snap.child("Rbr").val();
+        });
+
+
+
+        function dodavanjeUDB(Kat,BrP,Pit,O1,O2,O3,TO,i){
+           
+            if(i==1){
+            namee++;
+            var kategorijaRef="Kategorija  "+"-"+ namee;
+            firebase.database().ref("Kategorije").child(kategorijaRef).set({
+               NazivKategorije: Kat
+            });
+
+            
+            }
+
+             if(i==1){
+          
+            
+            firebase.database().ref("BrojPitanjaPoKategoriji").child(Kat).set({
+               BRP: BrPPKDB 
+            });
+            
+            
+            }
+            if(i==1){
+             
+             var dodajrbr = firebase.database().ref("RedniBrKategorije").child("RedniBr");
+            dodajrbr.child("Rbr").set(namee);
+            }
+
+            var PitanjeRef="Pitanje "+"-"+i;
+            firebase.database().ref(Kat).child(PitanjeRef).set({
+                Pitanje: Pit,
+                TacanOdgovor: TO,
+                Odgovori: {
+                    odg1: O1,
+                    odg2: O2,
+                    odg3: O3
+                }
+            });
+
+
+        }
+    
+
+    </script>
+
+
 </body>
 
 </html>
