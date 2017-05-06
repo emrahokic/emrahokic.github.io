@@ -116,8 +116,7 @@
                               rootPoruke.on("child_added", snap => {
 
                                   var PorukaFrom = snap.child("Poruka").val();
-                                  console.log(PorukaFrom);
-                                  console.log("h")
+                                 
                                   dodaj(PorukaFrom);
 
 
@@ -125,9 +124,11 @@
 
                               var textBox = document.getElementById("poruka");
                               function posalji() {
+                                    if(textBox.value!=""){
 
                                   var posaljiPoruku = firebase.database().ref("Poruke").push();
                                   posaljiPoruku.child("Poruka").set(textBox.value);
+                                    }
 
                               }
     </script>
