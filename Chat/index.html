@@ -117,8 +117,8 @@
                               rootPoruke.on("child_added", snap => {
 
                                   var PorukaFrom = snap.child("Poruka").val();
-                                  var ImeFDB =snap.child("Ime").val();
-                                  dodaj(PorukaFrom,ImeFDB);
+                                  var ImeFDB = snap.child("Ime").val();
+                                  dodaj(PorukaFrom, ImeFDB);
 
 
                               });
@@ -127,20 +127,20 @@
                               var textBox = document.getElementById("poruka");
                               function posalji() {
                                   if (textBox.value != "") {
-                                     imedb=document.getElementById("Ime").value;
-                                     document.getElementById("Ime").disabled = true;
-                                     if(imedb===""){
-                                         alert("Napisite svoje ime!!!")
-                                     }
-                                     else{
+                                      imedb = document.getElementById("Ime").value;
+                                      if (imedb === "") {
+                                          alert("Napisite svoje ime!!!")
+                                      }
+                                      else {
+                                      document.getElementById("Ime").disabled = true;
 
-                                      firebase.database().ref("Poruke").push().set({
-                                         Poruka: textBox.value,
-                                         Ime: imedb
-                                      });
-                                     }
-                                    //   var posaljiPoruku = firebase.database().ref("Poruke").push();
-                                    //   posaljiPoruku.child("Poruka").set(textBox.value);
+                                          firebase.database().ref("Poruke").push().set({
+                                              Poruka: textBox.value,
+                                              Ime: imedb
+                                          });
+                                      }
+                                      //   var posaljiPoruku = firebase.database().ref("Poruke").push();
+                                      //   posaljiPoruku.child("Poruka").set(textBox.value);
 
 
 
@@ -159,14 +159,16 @@
                                       posalji();
                                   }
                               }
-                              function dodaj(P,I) {
+                              function dodaj(P, I) {
 
                                   var poruka = " <div style='margin: 10px auto 10px; border-radius:10px ;word-wrap: break-word;background-color: lightblue;' class='col-xs-12 col-sm-12 col-md-12 col-lg-12' >" +
-                                      "<strong>"+ I +"</strong> <br> <p style='padding: 10px 0px 10px 3px'>" + P + " </p>" +
+                                      "<strong>" + I + "</strong> <br> <p style='padding: 10px 0px 10px 3px'>" + P + " </p>" +
                                       " </div>";
                                   document.getElementById("insert").innerHTML += poruka;
                                   document.getElementById("poruka").value = null;
                                   document.getElementById("poruka").focus();
+                                  var element = document.getElementById("insert");
+                                  element.scrollTop = element.scrollHeight;
 
                               }
     </script>
