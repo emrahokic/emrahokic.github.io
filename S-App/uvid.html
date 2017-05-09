@@ -4,11 +4,12 @@
 <head>
     <title>S-APP</title>
     <meta charset="UTF-8">
-        <link rel="shortcut icon" href="icona.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icona.ico" type="image/x-icon">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
 
@@ -17,13 +18,13 @@
         crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 
-    <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
+    <!--<nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
@@ -47,6 +48,37 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
+        </div>
+    </nav>-->
+
+    <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+                <a class="navbar-brand" href="index.html"><span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                   
+                    <li id="li1" class="">
+                        <a href="index.html"> <strong>Dodaj racun </strong> </a>
+                    </li>
+                    <li id="li2" class="active">
+                        <a href="uvid.html"> <strong>Uvid u racune</strong> </a>
+                    </li>
+                    <li id="li3" class="">
+                        <a href="postavke.html"> <strong>Postavke</strong> </a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <!--content-->
@@ -91,7 +123,7 @@
                     <tr>
                         <td>Datum</td>
                         <td id="DT">::::</td>
-                        <td rowspan="3" colspan="2" style=" text-align: center" ><img style="height: 95px; opacity: 0.25" src="icona.ico" alt=""></td>
+                        <td rowspan="3" colspan="2" style=" text-align: center"><img style="height: 95px; opacity: 0.25" src="icona.ico" alt=""></td>
                     </tr>
                     <tr>
                         <td>Novo stanje</td>
@@ -198,7 +230,7 @@
         rootKategorije.on("child_added", snap => {
 
             var D = snap.child("Datum").val();
-            var BRR =snap.child("BrojRacuna").val();
+            var BRR = snap.child("BrojRacuna").val();
             // html +="<option>" + NazivKat + "</option>";
             // document.getElementById("selectList").innerHTML=html;
             option = document.createElement("option");
@@ -225,38 +257,38 @@
         });
         function ucitaj() {
             var opcija = document.getElementById("selectList").value;
-            if( document.getElementById("selectList").value ===""){
+            if (document.getElementById("selectList").value === "") {
 
             }
-            else{
+            else {
 
-            var rootPostavke = firebase.database().ref("Racuni/Racun-" + opcija);
-            rootPostavke.on("value", snap => {
+                var rootPostavke = firebase.database().ref("Racuni/Racun-" + opcija);
+                rootPostavke.on("value", snap => {
 
-                document.getElementById("DT").innerText = snap.child("Datum").val();
-                document.getElementById("UIT").innerText = snap.child("Internet").val() + " KM";
-                document.getElementById("UKT").innerText = snap.child("Kirija").val() + " KM";
-                document.getElementById("NST").innerText = snap.child("NovoStanje").val();
-                document.getElementById("SST").innerText = snap.child("StaroStanje").val();
-                document.getElementById("JST").innerText = snap.child("Struja").val();
-                document.getElementById("SZJT").innerText = snap.child("StrujaZaJednog").val() + " KM";
-                document.getElementById("UT").innerText = snap.child("Ukupno").val() + " KM";
-                document.getElementById("UZJT").innerText = snap.child("UkupnoZaJednog").val() + " KM";
-                document.getElementById("UVT").innerText = snap.child("Voda").val() + " KM";
-                document.getElementById("JVT").innerText = snap.child("BrojOsoba").val();
-                document.getElementById("JKT").innerText = snap.child("BrojOsoba").val();
-                document.getElementById("UST").innerText = snap.child("UkupnoStruje").val() + " KM";
-                document.getElementById("CKT").innerText = DBStan  + " KM";
-                document.getElementById("CST").innerText = DBStruja + " KM";
-                document.getElementById("CVT").innerText = DBVoda + " KM";
-                document.getElementById("CIT").innerText = DBInternet + " KM";
-                document.getElementById("JIT").innerText = "1";
-                document.getElementById("naslov").innerText = "Račun br."+opcija;
-                
-
+                    document.getElementById("DT").innerText = snap.child("Datum").val();
+                    document.getElementById("UIT").innerText = snap.child("Internet").val() + " KM";
+                    document.getElementById("UKT").innerText = snap.child("Kirija").val() + " KM";
+                    document.getElementById("NST").innerText = snap.child("NovoStanje").val();
+                    document.getElementById("SST").innerText = snap.child("StaroStanje").val();
+                    document.getElementById("JST").innerText = snap.child("Struja").val();
+                    document.getElementById("SZJT").innerText = snap.child("StrujaZaJednog").val() + " KM";
+                    document.getElementById("UT").innerText = snap.child("Ukupno").val() + " KM";
+                    document.getElementById("UZJT").innerText = snap.child("UkupnoZaJednog").val() + " KM";
+                    document.getElementById("UVT").innerText = snap.child("Voda").val() + " KM";
+                    document.getElementById("JVT").innerText = snap.child("BrojOsoba").val();
+                    document.getElementById("JKT").innerText = snap.child("BrojOsoba").val();
+                    document.getElementById("UST").innerText = snap.child("UkupnoStruje").val() + " KM";
+                    document.getElementById("CKT").innerText = DBStan + " KM";
+                    document.getElementById("CST").innerText = DBStruja + " KM";
+                    document.getElementById("CVT").innerText = DBVoda + " KM";
+                    document.getElementById("CIT").innerText = DBInternet + " KM";
+                    document.getElementById("JIT").innerText = "1";
+                    document.getElementById("naslov").innerText = "Račun br." + opcija;
 
 
-            });
+
+
+                });
             }
 
         }
