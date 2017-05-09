@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>S-APP | Uvid u račune</title>
+    <title>S-APP</title>
     <meta charset="UTF-8">
+        <link rel="shortcut icon" href="icona.ico" type="image/x-icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
@@ -26,6 +28,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
             </div>
+            
             <ul class="nav navbar-nav">
                 <li class="">
                     <a href=""> <strong> | </strong> </a>
@@ -56,7 +59,7 @@
         <div style="padding: 15px 15px 25px 15px; box-shadow: 2px 2px 20px lightblue; border-radius: 5px" class="col-sm-4 col-md-4">
             <label for="">Uvid u racun po datumu</label>
             <select name="" id="selectList" onchange="ucitaj()" class="form-control" disabled required="required">
-                <option value=""></option>
+                <option  value=""></option>
               
                 
             </select>
@@ -88,7 +91,7 @@
                     <tr>
                         <td>Datum</td>
                         <td id="DT">::::</td>
-                        <td rowspan="3" colspan="2"></td>
+                        <td rowspan="3" colspan="2" style=" text-align: center" ><img style="height: 95px; opacity: 0.25" src="icona.ico" alt=""></td>
                     </tr>
                     <tr>
                         <td>Novo stanje</td>
@@ -222,6 +225,10 @@
         });
         function ucitaj() {
             var opcija = document.getElementById("selectList").value;
+            if( document.getElementById("selectList").value ===""){
+
+            }
+            else{
 
             var rootPostavke = firebase.database().ref("Racuni/Racun-" + opcija);
             rootPostavke.on("value", snap => {
@@ -250,6 +257,7 @@
 
 
             });
+            }
 
         }
     </script>
