@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>S-APP | Dodaj raćun</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href=""> <strong> | </strong> </a>
+                </li>
+                <li id="li1" class="active">
+                    <a href="index.html"> <strong>Dodaj racun </strong> </a>
+                </li>
+                <li id="li2" class="">
+                    <a href="uvid.html" id="N"> <strong>Uvid u racune </strong></a>
+                </li>
+                <li id="li3" class="">
+                    <a href="postavke.html"> <strong>Postavke</strong> </a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--content-->
+
+
+    <div style="margin-top: 50px" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+        </div>
+        <div style="box-shadow: 2px 2px 20px lightblue; border-radius: 5px" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+            <legend id="legenda">Račun: </legend>
+
+            <div class="form-group">
+                <label for="">Br. osoba</label>
+                <input type="number" class="form-control" id="R_BRO" min="1" required placeholder="Br. osoba u stanu">
+            </div>
+
+            <div class="form-group">
+                <label for="">Datum</label>
+                <input type="date" class="form-control" id="R_D" required placeholder="Input field">
+            </div>
+
+            <label for="">Stanje el. energije</label>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+                    <input type="text" name="" id="R_NSEE" class="form-control" value="" required placeholder="Novo stanje" title="">
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <input type="text" name="" id="R_SSEE" class="form-control" value="" required placeholder="Staro stanje" title="">
+
+                </div>
+            </div>
+
+
+            <br>
+            <br>
+            <br>
+            <button style="margin-top: 20px" onclick="racunaj()" class="btn btn-primary btn-block">Submit</button>
+            <br>
+
+
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+        </div>
+
+    </div>
+    <!--div tabela-->
+
+    <!--div tabela-->
+
+    <!--content-->
+
+    <!--*******************************************************************************************************************-->
+    <!--skripte-->
+    <!--firebase s.-->
+
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var DBStan;
+        var DBVoda;
+        var DBInternet;
+        var DBStruja;
+        var DBPDV;
+
+        var StaroStanje;
+        var NovoStanje;
+        var BrOsoba;
+        var Datum;
+        var redniBr;
+        var config = {
+            apiKey: "AIzaSyC7_q3uX7Za-XO3hY4DRXcUyllo5Xiwc-o",
+            authDomain: "fir-app-c07c3.firebaseapp.com",
+            databaseURL: "https://fir-app-c07c3.firebaseio.com",
+            projectId: "fir-app-c07c3",
+            storageBucket: "fir-app-c07c3.appspot.com",
+            messagingSenderId: "723091327598"
+        };
+        firebase.initializeApp(config);
+        var rootPostavke = firebase.database().ref("Postavke");
+        rootPostavke.on("value", snap => {
+
+            DBInternet = snap.child("Internet").val();
+            DBPDV = snap.child("PDV").val();
+            DBStan = snap.child("Stan").val();
+            DBStruja = snap.child("Struja").val();
+            DBVoda = snap.child("Voda").val();
+
+
+        });
+    </script>
+    <!--firebase s.-->
+
+    <script>
+        var rootP = firebase.database().ref("RedniBroj");
+        var redniBr;
+        rootP.on("value", snap => {
+
+            redniBr = snap.child("BR").val();
+            redniBr++;
+            document.getElementById("legenda").innerText = "Račun:" + redniBr;
+            s(redniBr);
+        });
+
+        
+        var SS;
+        function s(nesto){
+        var i= nesto-1;
+        var ss = firebase.database().ref("Racuni/Racun-" + i);
+        ss.on("value", snap => {
+            SS = snap.child("NovoStanje").val();
+
+        document.getElementById("R_SSEE").value = SS;
+        });
+        }
+        // var dodajrbr = firebase.database().ref("RedniBrKategorije").child("RedniBr");
+        // dodajrbr.child("Rbr").set("5");
+        var UStruje;
+        var UKirije;
+        var UVode;
+        var UInterneta;
+        var UZaJendog;
+        var Ukupno;
+        var StrujaZaJednog;
+        var neww=1;
+        function racunaj() {
+            StaroStanje = document.getElementById("R_SSEE").value;
+            NovoStanje = document.getElementById("R_NSEE").value;
+            BrOsoba = document.getElementById("R_BRO").value;
+            Datum = document.getElementById("R_D").value;
+            if (document.getElementById("R_SSEE").value === "" || document.getElementById("R_NSEE").value === "" || document.getElementById("R_BRO").value === "" || document.getElementById("R_D").value === "") {
+                alert("Ostavili ste prazna polja!")
+            }
+            if (parseInt(NovoStanje) < parseInt(StaroStanje)) {
+                alert("Novo stanje ne moze biti manje od starog stanja!")
+            }
+            if (BrOsoba < 1) {
+                alert("Broj osoba ne moze biti manji od 1!")
+            }
+            else {
+
+                var D = new Date(Datum);
+                var EUD = D.getDate() + "." + (D.getMonth() + 1) + "." + D.getFullYear();
+
+                UStruje = ((NovoStanje - StaroStanje) * DBStruja) * 1.17;
+                UKirije = DBStan * BrOsoba;
+
+                UVode = DBVoda * BrOsoba;
+
+                UInterneta = DBInternet;
+
+                Ukupno = UInterneta + UKirije + UStruje + UVode;
+
+                StrujaZaJednog = UStruje / BrOsoba;
+                UZaJendog = Ukupno / BrOsoba;
+
+                spremiDB(UStruje, UKirije, UVode, UInterneta, Ukupno, UZaJendog, StrujaZaJednog, EUD);
+                document.getElementById("N").innerHTML = "<strong>Uvid u racune </strong><span style='margin-left: 3px' class='badge badge-pill badge-warning'>"+ neww +" new</span>"
+                neww++;
+            }
+        }
+
+        function spremiDB(US, UK, UV, UI, U, UZJ, SZJ, D) {
+            firebase.database().ref("Racuni").child("Racun-" + redniBr).set({
+                Datum: D,
+                NovoStanje: parseInt(NovoStanje),
+                StaroStanje: parseInt(StaroStanje),
+                Kirija: UK,
+                Struja: (NovoStanje - StaroStanje),
+                BrojOsoba: parseInt(BrOsoba),
+                Voda: UV,
+                UkupnoStruje: US.toFixed(2),
+                Internet: UI,
+                UkupnoZaJednog: UZJ.toFixed(2),
+                StrujaZaJednog: SZJ.toFixed(2),
+                Ukupno: U.toFixed(2)
+
+            });
+
+            firebase.database().ref().child("Datumi").push({
+                Datum: D,
+                BrojRacuna: redniBr
+            });
+            firebase.database().ref().child("RedniBroj").set({
+                BR: redniBr
+            });
+
+            document.getElementById("R_SSEE").value = SS;
+            document.getElementById("R_NSEE").value = "";
+            document.getElementById("R_BRO").value = "";
+            document.getElementById("R_D").value = "";
+        }
+    </script>
+
+
+
+    <!--skripte-->
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>S-APP | Postavke</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!--content-->
+    <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href=""> <strong> | </strong> </a>
+                </li>
+                <li id="li1" class="">
+                    <a href="index.html"> <strong>Dodaj racun </strong> </a>
+                </li>
+                <li id="li2" class="">
+                    <a href="uvid.html"> <strong>Uvid u racune</strong> </a>
+                </li>
+                 <li id="li3" class="active">
+                    <a href="postavke.html"> <strong>Postavke</strong> </a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div style="margin-top: 50px" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+        </div>
+        <div style="box-shadow: 2px 2px 20px lightblue; border-radius: 5px" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+           
+                <legend>Račun:</legend>
+
+                <div class="form-group">
+                    <label for="">Cijena stana (KM):</label>
+                    <input type="text" class="form-control" id="P_C_S" min="1" required placeholder="Stan">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Cijena struje (KM)</label>
+                    <input type="text" class="form-control" id="P_C_EE" min="1" required placeholder="Struja">
+                </div>
+                <div class="form-group">
+                    <label for="">Cijena interneta (KM)</label>
+                    <input type="text" class="form-control" id="P_C_I" min="1" required placeholder="Internet">
+                </div>
+                <div class="form-group">
+                    <label for="">Cijena vode (KM)</label>
+                    <input type="text" class="form-control" id="P_C_V" min="1" required placeholder="Voda">
+                </div>
+                <div class="form-group">
+                    <label for="">PDV %</label>
+                    <input type="text" class="form-control" id="P_C_P" min="1" required placeholder="PDV">
+                </div>
+
+
+
+
+                <br>
+                <br>
+                <button style="margin-top: 20px" id="spremiDB" onclick="DBpostavke()"  class="btn btn-primary btn-block">Sačuvaj</button>
+                <br>
+
+           
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+        </div>
+
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!--content-->
+
+    <!--*******************************************************************************************************************-->
+    <!--skripte-->
+    <!--firebase s.-->
+
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        var DBStan;
+        var DBVoda;
+        var DBInternet;
+        var DBStruja;
+        var DBPDV;
+        var btnDB=document.getElementById("sacuvajDB");
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC7_q3uX7Za-XO3hY4DRXcUyllo5Xiwc-o",
+            authDomain: "fir-app-c07c3.firebaseapp.com",
+            databaseURL: "https://fir-app-c07c3.firebaseio.com",
+            projectId: "fir-app-c07c3",
+            storageBucket: "fir-app-c07c3.appspot.com",
+            messagingSenderId: "723091327598"
+        };
+        firebase.initializeApp(config);
+
+         var rootPostavke = firebase.database().ref("Postavke");
+
+                              rootPostavke.on("value", snap => {
+
+                                 DBInternet = snap.child("Internet").val();
+                                 DBPDV = snap.child("PDV").val();
+                                 DBStan = snap.child("Stan").val();
+                                 DBStruja = snap.child("Struja").val();   
+                                 DBVoda=snap.child("Voda").val();
+                                            
+                                 document.getElementById("P_C_EE").value= DBStruja;
+                                 document.getElementById("P_C_V").value= DBVoda;
+                                 document.getElementById("P_C_I").value= DBInternet;
+                                 document.getElementById("P_C_P").value= DBPDV;
+                                 document.getElementById("P_C_S").value= DBStan;
+                              });
+      
+        function DBpostavke(){
+             if(document.getElementById("P_C_I").value === "" || document.getElementById("P_C_P").value  === "" || document.getElementById("P_C_S").value === "" || document.getElementById("P_C_V").value === "" || document.getElementById("P_C_EE").value === "" ){
+                 alert("Ostavili ste prazno polje");
+             }
+             else{
+
+             firebase.database().ref().child("Postavke").set({
+               Internet: parseInt(document.getElementById("P_C_I").value),
+               PDV: parseInt(document.getElementById("P_C_P").value),
+               Stan: parseInt(document.getElementById("P_C_S").value),
+               Voda: parseInt(document.getElementById("P_C_V").value),
+               Struja: parseFloat(document.getElementById("P_C_EE").value)
+            });
+               alert("Vaše izmjene su sačuvane!");
+
+             }
+        }
+    </script>
+    <!--firebase s.-->
+
+    <script>
+        // var dodajrbr = firebase.database().ref("RedniBrKategorije").child("RedniBr");
+        // dodajrbr.child("Rbr").set("5");
+
+    </script>
+
+
+
+    <!--skripte-->
+</body>
+
+</html>
