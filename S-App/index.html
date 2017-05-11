@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -20,36 +20,21 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+        <style>
+ .i{
+            background-color: transparent;
+            border:0px;
+            border-bottom: 2px solid lightblue;
+            outline: none;
+        }
+        
+        </style>
 </head>
 
 <body>
 
-    <!--<nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="">
-                    <a href=""> <strong> | </strong> </a>
-                </li>
-                <li id="li1" class="active">
-                    <a href="index.html"> <strong>Dodaj racun </strong> </a>
-                </li>
-                <li id="li2" class="">
-                    <a href="uvid.html" id="N"> <strong>Uvid u racune </strong></a>
-                </li>
-                <li id="li3" class="">
-                    <a href="postavke.html"> <strong>Postavke</strong> </a>
-                </li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-        </div>
-    </nav>-->
-    
+
     <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -62,7 +47,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                   
+
                     <li id="li1" class="active">
                         <a href="index.html"> <strong>Dodaj racun </strong> </a>
                     </li>
@@ -75,12 +60,37 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li class="dropdown">
+                        <a id="LinkLogin" class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+                        <ul style="border-radius: 8px;width: 350px;padding: 30px 20px 5px 20px;margin-top: 5px" class="dropdown-menu">
+                            <li>
+                                <div class="form-group">
+                                    <input class="form-control i" id="txtEmail" type="email" name="email" placeholder="Email">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <input class="form-control i" id="txtPassword" type="password" name="password" placeholder="Password">
+                                </div>
+                            </li>
+                            <li>
+                                <div  class="form-group">
+                                    <button  class="btn btn-primary btn-block" id="btnLogin" type="submit">Log In</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--<button type="button" class="btn btn-info" style="margin-top: 8px" data-toggle="modal" data-target="#myModal">Login</button>-->
+
+             <button style="margin-top: 8px;margin-left: 5px;display: none"  id="btnLogout" type="button" class="btn  btn-info">Log Out!</button>
+
+         
                 </ul>
             </div>
         </div>
     </nav>
-    
+
+
     <!--content-->
 
 
@@ -176,7 +186,63 @@
         });
     </script>
     <!--firebase s.-->
+  <script>
+        // Initialize Firebase
+       
 
+        const txtEmail = document.getElementById("txtEmail");
+        const txtPassword = document.getElementById("txtPassword");
+        const btnLogin = document.getElementById("btnLogin");
+        const btnSignUp = document.getElementById("btnSignUp");
+        const btnLogout = document.getElementById("btnLogout");
+        const btnSave = document.getElementById("save");
+        const btnLink= document.getElementById("LinkLogin");
+        
+
+        btnLogin.addEventListener("click", e => {
+            const email = txtEmail.value;
+            const pass = txtPassword.value;
+            const auth=firebase.auth();
+            
+            //sign in
+            const promise = auth.signInWithEmailAndPassword(email, pass);
+            promise.catch(e => console.log(e.message));
+        });
+            //Add signup addEvent 
+        // btnSignUp.addEventListener("click", e=> {
+            
+        //     const email = txtEmail.value;
+        //     const pass = txtPassword.value;
+        //     const auth=firebase.auth();
+        //     //sign in
+        //     const promise = auth.createUserWithEmailAndPassword(email, pass);
+        //     promise.catch(e => console.log(e.message));
+
+        // });
+
+        btnLogout.addEventListener("click", e =>{
+            firebase.auth().signOut();
+
+        });
+
+        firebase.auth().onAuthStateChanged(firebaseUser =>{
+            if(firebaseUser){
+                 btnLogout.style.display="";
+                 btnLink.style.display="none";
+            }
+            else{
+                btnLogout.style.display="none";
+                 btnLink.style.display="";
+                                
+            }
+        });
+//  btnSave.addEventListener("click", e=>{
+
+//          firebase.database().ref().child("Test").set({
+//                 Ime: "emrah2"
+//             });
+//  });
+    </script>
     <script>
         var rootP = firebase.database().ref("RedniBroj");
         var redniBr;
@@ -188,16 +254,16 @@
             s(redniBr);
         });
 
-        
-        var SS;
-        function s(nesto){
-        var i= nesto-1;
-        var ss = firebase.database().ref("Racuni/Racun-" + i);
-        ss.on("value", snap => {
-            SS = snap.child("NovoStanje").val();
 
-        document.getElementById("R_SSEE").value = SS;
-        });
+        var SS;
+        function s(nesto) {
+            var i = nesto - 1;
+            var ss = firebase.database().ref("Racuni/Racun-" + i);
+            ss.on("value", snap => {
+                SS = snap.child("NovoStanje").val();
+
+                document.getElementById("R_SSEE").value = SS;
+            });
         }
         // var dodajrbr = firebase.database().ref("RedniBrKategorije").child("RedniBr");
         // dodajrbr.child("Rbr").set("5");
@@ -208,7 +274,7 @@
         var UZaJendog;
         var Ukupno;
         var StrujaZaJednog;
-        var neww=1;
+        var neww = 1;
         function racunaj() {
             StaroStanje = document.getElementById("R_SSEE").value;
             NovoStanje = document.getElementById("R_NSEE").value;
@@ -241,7 +307,7 @@
                 UZaJendog = Ukupno / BrOsoba;
 
                 spremiDB(UStruje, UKirije, UVode, UInterneta, Ukupno, UZaJendog, StrujaZaJednog, EUD);
-                document.getElementById("N").innerHTML = "<strong>Uvid u racune </strong><span style='margin-left: 3px' class='badge badge-pill badge-warning'>"+ neww +" new</span>"
+                document.getElementById("N").innerHTML = "<strong>Uvid u racune </strong><span style='margin-left: 3px' class='badge badge-pill badge-warning'>" + neww + " new</span>"
                 neww++;
             }
         }
@@ -281,6 +347,7 @@
 
 
     <!--skripte-->
+   
 </body>
 
 </html>

@@ -4,12 +4,12 @@
 <head>
     <title>S-APP</title>
     <meta charset="UTF-8">
-        <link rel="shortcut icon" href="icona.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icona.ico" type="image/x-icon">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -21,37 +21,20 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+    <style>
+        .i {
+            background-color: transparent;
+            border: 0px;
+            border-bottom: 2px solid lightblue;
+            outline: none;
+        }
+    </style>
 </head>
+
 
 <body>
 
-    <!--content-->
-    <!--<nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                
-                <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="">
-                    <a href=""> <strong> | </strong> </a>
-                </li>
-                <li id="li1" class="">
-                    <a href="index.html"> <strong>Dodaj racun </strong> </a>
-                </li>
-                <li id="li2" class="">
-                    <a href="uvid.html"> <strong>Uvid u racune</strong> </a>
-                </li>
-                 <li id="li3" class="active">
-                    <a href="postavke.html"> <strong>Postavke</strong> </a>
-                </li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-        </div>
-    </nav>-->
 
     <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
         <div class="container-fluid">
@@ -65,7 +48,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                   
+
                     <li id="li1" class="">
                         <a href="index.html"> <strong>Dodaj racun </strong> </a>
                     </li>
@@ -78,7 +61,31 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li class="dropdown">
+                        <a id="LinkLogin" class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+                        <ul style="border-radius: 8px;width: 350px;padding: 30px 20px 5px 20px;margin-top: 5px" class="dropdown-menu">
+                            <li>
+                                <div class="form-group">
+                                    <input class="form-control i" id="txtEmail" type="email" name="email" placeholder="Email">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <input class="form-control i" id="txtPassword" type="password" name="password" placeholder="Password">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" id="btnLogin" type="submit">Log In</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--<button type="button" class="btn btn-info" style="margin-top: 8px" data-toggle="modal" data-target="#myModal">Login</button>-->
+
+                    <button style="margin-top: 8px;margin-left: 5px;display: none" id="btnLogout" type="button" class="btn  btn-info">Log Out!</button>
+
+
                 </ul>
             </div>
         </div>
@@ -89,40 +96,40 @@
 
         </div>
         <div style="box-shadow: 2px 2px 20px lightblue; border-radius: 5px" class="col-sm-4 col-md-4">
-           
-                <legend>Račun:</legend>
 
-                <div class="form-group">
-                    <label for="">Cijena stana (KM):</label>
-                    <input type="text" class="form-control" id="P_C_S" min="1" required placeholder="Stan">
-                </div>
+            <legend>Račun:</legend>
 
-                <div class="form-group">
-                    <label for="">Cijena struje (KM)</label>
-                    <input type="text" class="form-control" id="P_C_EE" min="1" required placeholder="Struja">
-                </div>
-                <div class="form-group">
-                    <label for="">Cijena interneta (KM)</label>
-                    <input type="text" class="form-control" id="P_C_I" min="1" required placeholder="Internet">
-                </div>
-                <div class="form-group">
-                    <label for="">Cijena vode (KM)</label>
-                    <input type="text" class="form-control" id="P_C_V" min="1" required placeholder="Voda">
-                </div>
-                <div class="form-group">
-                    <label for="">PDV %</label>
-                    <input type="text" class="form-control" id="P_C_P" min="1" required placeholder="PDV">
-                </div>
+            <div class="form-group">
+                <label for="">Cijena stana (KM):</label>
+                <input type="text" class="form-control" id="P_C_S" min="1" required placeholder="Stan">
+            </div>
 
-
+            <div class="form-group">
+                <label for="">Cijena struje (KM)</label>
+                <input type="text" class="form-control" id="P_C_EE" min="1" required placeholder="Struja">
+            </div>
+            <div class="form-group">
+                <label for="">Cijena interneta (KM)</label>
+                <input type="text" class="form-control" id="P_C_I" min="1" required placeholder="Internet">
+            </div>
+            <div class="form-group">
+                <label for="">Cijena vode (KM)</label>
+                <input type="text" class="form-control" id="P_C_V" min="1" required placeholder="Voda">
+            </div>
+            <div class="form-group">
+                <label for="">PDV %</label>
+                <input type="text" class="form-control" id="P_C_P" min="1" required placeholder="PDV">
+            </div>
 
 
-                <br>
-                <br>
-                <button style="margin-top: 20px" id="spremiDB" onclick="DBpostavke()"  class="btn btn-primary btn-block">Sačuvaj</button>
-                <br>
 
-           
+
+            <br>
+            <br>
+            <button style="margin-top: 20px" id="spremiDB" onclick="DBpostavke()" class="btn btn-primary btn-block">Sačuvaj</button>
+            <br>
+
+
         </div>
         <div class="col-sm-4 col-md-4">
 
@@ -150,7 +157,7 @@
         var DBInternet;
         var DBStruja;
         var DBPDV;
-        var btnDB=document.getElementById("sacuvajDB");
+        var btnDB = document.getElementById("sacuvajDB");
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyC7_q3uX7Za-XO3hY4DRXcUyllo5Xiwc-o",
@@ -162,47 +169,103 @@
         };
         firebase.initializeApp(config);
 
-         var rootPostavke = firebase.database().ref("Postavke");
+        var rootPostavke = firebase.database().ref("Postavke");
 
-                              rootPostavke.on("value", snap => {
+        rootPostavke.on("value", snap => {
 
-                                 DBInternet = snap.child("Internet").val();
-                                 DBPDV = snap.child("PDV").val();
-                                 DBStan = snap.child("Stan").val();
-                                 DBStruja = snap.child("Struja").val();   
-                                 DBVoda=snap.child("Voda").val();
-                                            
-                                 document.getElementById("P_C_EE").value= DBStruja;
-                                 document.getElementById("P_C_V").value= DBVoda;
-                                 document.getElementById("P_C_I").value= DBInternet;
-                                 document.getElementById("P_C_P").value= DBPDV;
-                                 document.getElementById("P_C_S").value= DBStan;
-                              });
-      
-        function DBpostavke(){
-             if(document.getElementById("P_C_I").value === "" || document.getElementById("P_C_P").value  === "" || document.getElementById("P_C_S").value === "" || document.getElementById("P_C_V").value === "" || document.getElementById("P_C_EE").value === "" ){
-                 alert("Ostavili ste prazno polje");
-             }
-             else{
+            DBInternet = snap.child("Internet").val();
+            DBPDV = snap.child("PDV").val();
+            DBStan = snap.child("Stan").val();
+            DBStruja = snap.child("Struja").val();
+            DBVoda = snap.child("Voda").val();
 
-             firebase.database().ref().child("Postavke").set({
-               Internet: parseInt(document.getElementById("P_C_I").value),
-               PDV: parseInt(document.getElementById("P_C_P").value),
-               Stan: parseInt(document.getElementById("P_C_S").value),
-               Voda: parseInt(document.getElementById("P_C_V").value),
-               Struja: parseFloat(document.getElementById("P_C_EE").value)
-            });
-               alert("Vaše izmjene su sačuvane!");
+            document.getElementById("P_C_EE").value = DBStruja;
+            document.getElementById("P_C_V").value = DBVoda;
+            document.getElementById("P_C_I").value = DBInternet;
+            document.getElementById("P_C_P").value = DBPDV;
+            document.getElementById("P_C_S").value = DBStan;
+        });
 
-             }
+        function DBpostavke() {
+            if (document.getElementById("P_C_I").value === "" || document.getElementById("P_C_P").value === "" || document.getElementById("P_C_S").value === "" || document.getElementById("P_C_V").value === "" || document.getElementById("P_C_EE").value === "") {
+                alert("Ostavili ste prazno polje");
+            }
+            else {
+
+                firebase.database().ref().child("Postavke").set({
+                    Internet: parseInt(document.getElementById("P_C_I").value),
+                    PDV: parseInt(document.getElementById("P_C_P").value),
+                    Stan: parseInt(document.getElementById("P_C_S").value),
+                    Voda: parseInt(document.getElementById("P_C_V").value),
+                    Struja: parseFloat(document.getElementById("P_C_EE").value)
+                });
+                alert("Vaše izmjene su sačuvane!");
+
+            }
         }
     </script>
     <!--firebase s.-->
+    <script>
+        // Initialize Firebase
 
+
+        const txtEmail = document.getElementById("txtEmail");
+        const txtPassword = document.getElementById("txtPassword");
+        const btnLogin = document.getElementById("btnLogin");
+        const btnSignUp = document.getElementById("btnSignUp");
+        const btnLogout = document.getElementById("btnLogout");
+        const btnSave = document.getElementById("save");
+        const btnLink = document.getElementById("LinkLogin");
+
+
+        btnLogin.addEventListener("click", e => {
+            const email = txtEmail.value;
+            const pass = txtPassword.value;
+            const auth = firebase.auth();
+
+            //sign in
+            const promise = auth.signInWithEmailAndPassword(email, pass);
+            promise.catch(e => console.log(e.message));
+
+        });
+        //Add signup addEvent 
+        // btnSignUp.addEventListener("click", e=> {
+
+        //     const email = txtEmail.value;
+        //     const pass = txtPassword.value;
+        //     const auth=firebase.auth();
+        //     //sign in
+        //     const promise = auth.createUserWithEmailAndPassword(email, pass);
+        //     promise.catch(e => console.log(e.message));
+
+        // });
+
+        btnLogout.addEventListener("click", e => {
+            firebase.auth().signOut();
+
+        });
+
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if (firebaseUser) {
+                btnLogout.style.display = "";
+                btnLink.style.display = "none";
+            }
+            else {
+                btnLogout.style.display = "none";
+                btnLink.style.display = "";
+
+            }
+        });
+//  btnSave.addEventListener("click", e=>{
+
+//          firebase.database().ref().child("Test").set({
+//                 Ime: "emrah2"
+//             });
+//  });
+    </script>
     <script>
         // var dodajrbr = firebase.database().ref("RedniBrKategorije").child("RedniBr");
         // dodajrbr.child("Rbr").set("5");
-
     </script>
 
 

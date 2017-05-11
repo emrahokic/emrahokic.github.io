@@ -19,38 +19,19 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+ <style>
+        .i {
+            background-color: transparent;
+            border: 0px;
+            border-bottom: 2px solid lightblue;
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!--<nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html"> <span style="color: rgb(51, 122, 183)"> <strong>S-App</strong> </span></a>
-            </div>
-            
-            <ul class="nav navbar-nav">
-                <li class="">
-                    <a href=""> <strong> | </strong> </a>
-                </li>
-                <li id="li1" class="">
-                    <a href="index.html"> <strong>Dodaj racun </strong> </a>
-                </li>
-                <li id="li2" class="active">
-                    <a href="uvid.html"> <strong>Uvid u racune</strong> </a>
-                </li>
-                <li id="li3" class="">
-                    <a href="postavke.html"> <strong>Postavke</strong> </a>
-                </li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-        </div>
-    </nav>-->
-
+   
     <nav style=" box-shadow: 0.5px 0.5px 20px rgb(51, 122, 183)" class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -75,8 +56,32 @@
                     </li>
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+               <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="LinkLogin" class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+                        <ul style="border-radius: 8px;width: 350px;padding: 30px 20px 5px 20px;margin-top: 5px" class="dropdown-menu">
+                            <li>
+                                <div class="form-group">
+                                    <input class="form-control i" id="txtEmail" type="email" name="email" placeholder="Email">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <input class="form-control i" id="txtPassword" type="password" name="password" placeholder="Password">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" id="btnLogin" type="submit">Log In</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--<button type="button" class="btn btn-info" style="margin-top: 8px" data-toggle="modal" data-target="#myModal">Login</button>-->
+
+                    <button style="margin-top: 8px;margin-left: 5px;display: none" id="btnLogout" type="button" class="btn  btn-info">Log Out!</button>
+
+
                 </ul>
             </div>
         </div>
@@ -219,7 +224,6 @@
         firebase.initializeApp(config);
 
 
-
         var BrojOsoba, Datum, Internet, Kirija, NovoStanje, StaroStanje, Struja, StrujaZaJ, Ukupno, UkupnoZJ, Voda;
 
         // *********************************************
@@ -245,7 +249,6 @@
         var DBStruja;
         var DBPDV;
         var rootPostavke = firebase.database().ref("Postavke");
-
         rootPostavke.on("value", snap => {
 
             DBInternet = snap.child("Internet").val();
@@ -292,6 +295,61 @@
             }
 
         }
+    </script>
+    <script>
+        // Initialize Firebase
+      
+       
+        const txtEmail = document.getElementById("txtEmail");
+        const txtPassword = document.getElementById("txtPassword");
+        const btnLogin = document.getElementById("btnLogin");
+        const btnSignUp = document.getElementById("btnSignUp");
+        const btnLogout = document.getElementById("btnLogout");
+        const btnSave = document.getElementById("save");
+        const btnLink = document.getElementById("LinkLogin");
+
+
+        btnLogin.addEventListener("click", e => {
+            const email = txtEmail.value;
+            const pass = txtPassword.value;
+            const auth = firebase.auth();
+
+            //sign in
+            const promise = auth.signInWithEmailAndPassword(email, pass);
+            promise.catch(e => console.log(e.message));
+            
+        });
+        //Add signup addEvent 
+        // btnSignUp.addEventListener("click", e=> {
+
+        //     const email = txtEmail.value;
+        //     const pass = txtPassword.value;
+        //     const auth=firebase.auth();
+        //     //sign in
+        //     const promise = auth.createUserWithEmailAndPassword(email, pass);
+        //     promise.catch(e => console.log(e.message));
+
+        // });
+
+        btnLogout.addEventListener("click", e => {
+            firebase.auth().signOut();
+
+        });
+
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if (firebaseUser) {
+                btnLogout.style.display = "";
+                btnLink.style.display = "none";
+                
+               
+            }
+            else {
+                btnLogout.style.display = "none";
+                btnLink.style.display = "";
+
+            }
+        });
+
     </script>
     <!--firebase s.-->
 
