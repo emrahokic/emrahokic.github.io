@@ -74,8 +74,8 @@
                                 </div>
                             </li>
                             <li>
-                                <div  class="form-group">
-                                    <button  class="btn btn-primary btn-block" id="btnLogin" type="submit">Log In</button>
+                                <div  class="form-group" style="text-align: center">
+                                    <button  class="btn btn-primary " id="btnLogin" style="height: 65px;border-radius: 100px" type="submit">Log In</button>
                                 </div>
                             </li>
                         </ul>
@@ -99,29 +99,29 @@
         <div class="col-sm-4 col-md-4">
 
         </div>
-        <div style="box-shadow: 2px 2px 20px lightblue; border-radius: 5px" class="col-sm-4 col-md-4">
+        <div style="box-shadow: 2px 2px 20px lightblue; border-radius: 10px; padding: 20px 20px 10px 20px" class="col-sm-4 col-md-4">
 
             <legend id="legenda">Račun: </legend>
 
             <div class="form-group">
                 <label for="">Br. osoba</label>
-                <input type="number" class="form-control" id="R_BRO" min="1" required placeholder="Br. osoba u stanu">
+                <input type="number" style="border-radius: 30px" class="form-control" id="R_BRO" min="1" required placeholder="Br. osoba u stanu">
             </div>
 
             <div class="form-group">
                 <label for="">Datum</label>
-                <input type="date" class="form-control" id="R_D" required placeholder="Input field">
+                <input type="date" style="border-radius: 30px" class="form-control" id="R_D" required placeholder="Input field">
             </div>
 
             <label for="">Stanje el. energije</label>
             <div class="col-sm-12 col-md-12">
                 <div style="margin-top: 8px" class="col-sm-6 col-md-6">
 
-                    <input type="number" name="" id="R_NSEE" class="form-control" value="" required placeholder="Novo stanje" title="">
+                    <input type="number" style="border-radius: 30px" name="" id="R_NSEE" class="form-control" value="" required placeholder="Novo stanje" title="">
 
                 </div>
                 <div style="margin-top: 8px" class="col-sm-6 col-md-6">
-                    <input type="number" name="" id="R_SSEE" class="form-control" value="" required placeholder="Staro stanje" title="">
+                    <input type="number" style="border-radius: 30px" name="" id="R_SSEE" class="form-control" value="" required placeholder="Staro stanje" title="">
 
                 </div>
             </div>
@@ -130,7 +130,7 @@
             <br>
             <br>
             <br>
-            <button style="margin-top: 20px" onclick="racunaj()" class="btn btn-primary btn-block">Submit</button>
+            <button style="margin-top: 20px; border-radius: 30px" onclick="racunaj()" class="btn btn-success btn-block">SPREMI</button>
             <br>
 
 
@@ -330,7 +330,7 @@
 
             });
 
-            firebase.database().ref().child("Datumi").push({
+            firebase.database().ref().child("Datumi/Datum"+redniBr).set({
                 Datum: D,
                 BrojRacuna: redniBr
             });
