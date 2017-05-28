@@ -1,35 +1,8 @@
 <?php
 $to = "emrah.okic@edu.fit.ba";
-$subject = "HTML email";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: emrahokic96@hotmail.com" . "\r\n";
 
-$message = "
-<html>
-<head>
-<title>HTML email</title>
-</head>
-<body>
-<p>This email contains HTML Tags!</p>
-<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-</tr>
-<tr>
-<td>John</td>
-<td>Doe</td>
-</tr>
-</table>
-</body>
-</html>
-";
-
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-// More headers
-$headers .= 'From: <emrahokic96@hotmail.com>' . "\r\n";
-
-
-mail($to,$subject,$message,$headers);
+mail($to,$subject,$txt,$headers);
 ?>
