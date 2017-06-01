@@ -194,7 +194,9 @@
         });
 
         function DBpostavke() {
-            if (document.getElementById("P_C_I").value === "" || document.getElementById("P_C_P").value === "" || document.getElementById("P_C_S").value === "" || document.getElementById("P_C_V").value === "" || document.getElementById("P_C_EE").value === "") {
+            if (document.getElementById("P_C_I").value === "" || document.getElementById("P_C_P").value === "" 
+            || document.getElementById("P_C_S").value === "" || document.getElementById("P_C_V").value === "" 
+            || document.getElementById("P_C_EE").value === "" || document.getElementById("P_BRO").value === "") {
                 alert("Ostavili ste prazno polje");
             }
             else {
@@ -204,7 +206,8 @@
                     PDV: parseInt(document.getElementById("P_C_P").value),
                     Stan: parseInt(document.getElementById("P_C_S").value),
                     Voda: parseInt(document.getElementById("P_C_V").value),
-                    Struja: parseFloat(document.getElementById("P_C_EE").value)
+                    Struja: parseFloat(document.getElementById("P_C_EE").value),
+                    BrojOsoba: parseInt(document.getElementById("P_BRO").value)
                 });
                 alert("Vaše izmjene su sačuvane!");
 
