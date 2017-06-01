@@ -119,6 +119,10 @@
                 <label for="">PDV %</label>
                 <input type="text" style="border-radius: 30px" class="form-control" id="P_C_P" min="1" required placeholder="PDV">
             </div>
+            <div class="form-group">
+                <label for="">Broj osoba</label>
+                <input type="text" style="border-radius: 30px" class="form-control" id="P_BRO" min="1" required placeholder="Broj osoba">
+            </div>
 
 
 
@@ -221,8 +225,8 @@
             const email = txtEmail.value;
             const pass = txtPassword.value;
             const auth = firebase.auth();
-             document.getElementById("txtEmail").value= "";
-              document.getElementById("txtPassword").value="";
+            document.getElementById("txtEmail").value = "";
+            document.getElementById("txtPassword").value = "";
             //sign in
             const promise = auth.signInWithEmailAndPassword(email, pass);
             promise.catch(e => console.log(e.message));
