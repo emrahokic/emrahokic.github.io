@@ -160,6 +160,7 @@
         var DBInternet;
         var DBStruja;
         var DBPDV;
+        var DBBrOsoba;
         var btnDB = document.getElementById("sacuvajDB");
         // Initialize Firebase
         var config = {
@@ -181,12 +182,15 @@
             DBStan = snap.child("Stan").val();
             DBStruja = snap.child("Struja").val();
             DBVoda = snap.child("Voda").val();
+            DBBrOsoba = snap.child("BrOsoba").val();
 
             document.getElementById("P_C_EE").value = DBStruja;
             document.getElementById("P_C_V").value = DBVoda;
             document.getElementById("P_C_I").value = DBInternet;
             document.getElementById("P_C_P").value = DBPDV;
             document.getElementById("P_C_S").value = DBStan;
+            document.getElementById("P_BRO").value= DBBrOsoba;
+
         });
 
         function DBpostavke() {
