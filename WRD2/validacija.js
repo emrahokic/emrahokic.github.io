@@ -80,5 +80,5 @@ function dodajuLocalStorage(){
     niz.push(a+","+b+","+c+","+d+","+e+","+f);
     var jsonniz=JSON.stringify(niz);
     localStorage.setItem("Bucket",jsonniz);
-    console.log(jsonniz);
+    alert("Spremljeno");
 }
