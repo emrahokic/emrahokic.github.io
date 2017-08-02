@@ -3,5 +3,5 @@ var animation = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: 'https://raw.githubusercontent.com/emrahokic/Web1/master/data.json' // the path to the animation json
+    path: 'https://raw.githubusercontent.com/emrahokic/emrahokic.github.io/master/data.json' // the path to the animation json
 })
