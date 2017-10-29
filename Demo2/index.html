@@ -16,6 +16,7 @@
     <link href="./assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="./assets/css/demo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100" rel="stylesheet">
 </head>
 
 <body class="index-page sidebar-collapse">
@@ -24,7 +25,7 @@
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="#">
-                   <h5><span style="font-weight:bold">4</span>  S T Y L E </h5> 
+                   <h5><span style="font-weight:bold">4</span> <span style="font-family: 'Work Sans', cursive;">  S T Y L E</span> </h5> 
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar bar1"></span>
@@ -37,44 +38,44 @@
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
                             <i class="now-ui-icons files_paper"></i>
-                            <p>Home</p>
+                            <p>Početna</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" target="">
                             <i class="now-ui-icons travel_info"></i>
-                            <p>About</p>
+                            <p>o nama</p>
                         </a>
                     </li>
                     <li class="nav-item">
                             <a class="nav-link" href="#" target="">
                                 <i class="now-ui-icons business_badge"></i>
-                                <p>Contacts</p>
+                                <p>Kontakt</p>
                             </a>
                         </li>
                     <li class="nav-item">
                             <a class="nav-link btn btn-neutral" href="#" target="">
-                                <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                                <p>Download</p>
+                                <i style="padding-right:10px" class="now-ui-icons design_bullet-list-67"></i>
+                                <p> Anketa</p>
                             </a>
                         </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com" target="_blank">
-                            <i class="fa fa-twitter"></i>
-                            <p class="d-lg-none d-xl-none">Twitter</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com" target="_blank">
-                            <i class="fa fa-facebook-square"></i>
-                            <p class="d-lg-none d-xl-none">Facebook</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com" target="_blank">
-                            <i class="fa fa-instagram"></i>
-                            <p class="d-lg-none d-xl-none">Instagram</p>
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com" target="_blank">
+                                <i class="fa fa-facebook-square"></i>
+                                <p class="d-lg-none d-xl-none">Facebook</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                                <p class="d-lg-none d-xl-none">Instagram</p>
+                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" rel="tooltip" title="Follow us on Twiter" data-placement="bottom" href="https://twitter.com" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                                <p class="d-lg-none d-xl-none">Twitter</p>
+                            </a>
+                        </li>
                     </li>
                 </ul>
             </div>
@@ -88,8 +89,8 @@
                     <div class="container">
                         <div class="content-center brand">
                             <!-- <img class="n-logo" src="./assets/img/now-logo.png" alt=""> -->
-                            <h1 class="h1-seo" style="font-size:65px"> <strong>4</strong>      S T Y L E</h1>
-                            <h3>Find   your   style</h3>
+                            <h1 class="h1-seo" style="font-size:65px"> <strong>4</strong>  <span style="font-family: 'Work Sans', cursive;">  S T Y L E</span></h1>
+                            <h3 style="font-family: 'Work Sans', cursive;">Uskoro dostupno na Android uređajima!</h3>
                         </div>
                     </div>
              </div>
@@ -140,6 +141,7 @@
         // the body of this function is in assets/js/now-ui-kit.js
         nowuiKit.initSliders();
     });
+
     function scrollToDownload() {
 
         if ($('.section-download').length != 0) {
