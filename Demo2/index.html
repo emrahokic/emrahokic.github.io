@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="ico.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="ico.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>4 Style | Welcome</title>
@@ -27,11 +27,11 @@
 <body class="index-page sidebar-collapse">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
-        <div class="container">
+        <div   class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="#">
                    
-                    <h5 style="font-family: 'Work Sans', cursive;"> <img  src="logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">  S T Y L E</h5> 
+                    <h5 class="animations" style="font-family: 'Work Sans', cursive;"> <img  src="logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">  S T Y L E</h5> 
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar bar1"></span>
@@ -41,33 +41,33 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <li class="nav-item animations">
                         <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
                             <i class="now-ui-icons files_paper"></i>
                             <p>Početna</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item animations">
                         <a class="nav-link" href="#" target="">
                             <i class="now-ui-icons travel_info"></i>
                             <p>o nama</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item animations" >
                             <a class="nav-link" href="#" target="">
                                 <i class="now-ui-icons business_badge"></i>
                                 <p>Kontakt</p>
                             </a>
                     </li>
                         
-                    <li class="nav-item">
+                    <li class="nav-item animations">
                             <a class="nav-link btn btn-neutral" rel="tooltip" title="Pomozite nam, odgovorite na par pitanja!" data-placement="bottom" href="#" target="">
                                 <i style="padding-right:10px" class="now-ui-icons design_bullet-list-67"></i>
                                 <p> Anketa</p>
                             </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item animations">
                             <a class="nav-link" href="#" target="">
                                 <i class="now-ui-icons users_single-02"></i>
                                 <p>Log in</p>
@@ -104,8 +104,8 @@
                     <div class="container">
                         <div class="content-center brand">
                                         
-                             <h1 class="h1-seo"  style="font-size:3.5em;font-family: 'Work Sans', cursive;display:inline-block"> <img  src="logo.svg" style="display:inline; height:1.5em; text-align:center"  alt="">  S T Y L E</h1>
-                            <h3 style="font-family: 'Work Sans', cursive;">Uskoro dostupno na Android uređajima!</h3>
+                             <h1 id="Naslov" class="h1-seo"  style="font-size:3.5em;font-family: 'Work Sans', cursive;display:inline-block"> <img  src="logo.svg" style="display:inline; height:1.5em; text-align:center"  alt="">  S T Y L E</h1>
+                            <h3 id="PodNaslov" style="font-family: 'Work Sans', cursive;">Uskoro dostupno na Android uređajima!</h3>
                         </div>
                     </div>
              </div>
@@ -114,7 +114,7 @@
                 
                     <div class="section section-tabs">
                             <div class="container">
-                        <h2 style="text-align:center; font-weight:200; border-bottom:1px solid orange; padding-bottom:15px" >Pronađite svoj stil!</h2>
+                        <h2 id="AboutHeader" style="text-align:center; font-weight:200; border-bottom:1px solid orange; padding-bottom:15px" >Pronađite svoj stil!</h2>
                         <br>
                         <br>
                         <br>
@@ -149,7 +149,7 @@
                                                         <div class="tab-pane active" id="home" role="tabpanel">
                                                                
                                                             <h1> <i  class="now-ui-icons business_badge"></i></h1>
-                                                            <p>Odabirom željenog salona dobivate uvid u salon, tj. profil salona i sve njegove informacije</p>
+                                                            <p>Nakon odabira salona dobivate uvid u Frizerski/Beauty salon, tj. profil salona i sve njegove informacije</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -193,7 +193,7 @@
                                 <br>
                                 <br>
                                 <br>
-                                <h2 style="text-align:center; font-weight:200; padding-bottom:15px">Ne može jednostavnije</h2>
+                                <h2 id="AboutFooter" style="text-align:center; font-weight:200; padding-bottom:15px">Ne može biti jednostavnije</h2>
                             </div>
                         </div>
                 </div>
@@ -215,6 +215,7 @@
              </div>
 
     </div>
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 </body>
 <!--   Core JS Files   -->
 <script src="./assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
@@ -234,7 +235,20 @@
         // the body of this function is in assets/js/now-ui-kit.js
         nowuiKit.initSliders();
     });
+    window.sr = ScrollReveal({ reset: true });
+sr.reveal('.animations',{ duration: 2000,origin: 'bottom',reset:false });
+    
+sr.reveal('#Naslov',{ duration: 1700,delay:100,origin: 'bottom' });
+sr.reveal('#PodNaslov',{ duration: 1800,delay: 200,origin: 'bottom' });
+sr.reveal('#AboutHeader',{ duration: 1700,origin: 'bottom' });
+sr.reveal('#AboutFooter',{ duration: 1700,delay:150,origin: 'bottom' });
+    
+sr.reveal('#FirstCard',{ duration: 1700,delay: 50,origin: 'left' });
+sr.reveal('#SecondCard',{ duration: 1700,delay: 50,origin: 'right' });
+sr.reveal('#ThirdCard',{ duration: 1700,delay: 50, origin: 'left' });
+sr.reveal('#FourthCard',{ duration: 1700,delay: 50,origin: 'right' });
 
+sr.reveal('.bar');
   
     function scrollToDownload() {
 
