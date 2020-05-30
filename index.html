@@ -1,90 +1,310 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Libre+Baskerville&display=swap"
+    rel="stylesheet">
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
 
-    <meta charset="utf-8" />
-    <title>Studenti FIT-a</title>
-    <style>
-     
-  th,td{
-    padding:15px;
-    }
-	
-	tr:nth-child(even){
-	 background-color: #cccccc;
-	}
-	tr:nth-child(odd){
-	 background-color: #efefef;
-	}
-
-	.img:hover{
-   
-     height:50px;
+  <style>
+    /* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
- 
-    </style>
-  
-        <script src="jquery-3.2.0.min.js"></script>
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100; 
+}
+::-webkit-scrollbar-track:hover {
+  background: #f1f1f110; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(249, 252, 71, 0.233); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(230, 245, 16); 
+  cursor: pointer;
+}
+    body {
+      margin: 0px;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      padding: 0px;
+      background-color: rgb(5, 5, 5);
+    }
+
+    .topnav {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 2;
+
+    }
+
+    @media screen and (max-width: 480px) {
+      #rightSide {
+        visibility: hidden;
+
+      }
+
+    }
+
+    .topnav a {
+      float: left;
+      color: #ffffff;
+      text-align: center;
+      padding: 50px 16px 10px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      margin-right: 2px;
+      transition: 0.4s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0);
+      border-radius: 0px 0px 0px 0px;
+
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topnav a:hover {
+      color: #ffffff7c;
+      border-bottom: 1px solid white;
+      border-radius: 0px 0px 6px 6px;
+    }
+
+    .topnav a.active {
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      border-radius: 0px 0px 6px 6px;
+    }
+
+    #leftSide h3.active {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      color: rgba(255, 255, 255, 0.938);
+
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+    }
+
+    .topnav-right {
+      float: right;
+      margin-right: 100px;
+      margin-left: 100px;
+    }
+
+    #leftSide {
+      margin: 0px;
+      width: 100px;
+      z-index: 2;
+      height: 100%;
+      background-color: rgba(5, 5, 5, 0.712);
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+
+    }
+
+    #rightSide {
+      margin: 0px;
+      width: 100px;
+      right: 0;
+      height: 100%;
+      z-index: 2;
+      background-color: rgba(5, 5, 5);
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: visible;
+    }
+
+    #inner {
+      width: 50%;
+      padding-top: 15px;
+      text-align: center;
+    }
+
+    #inner h3 {
+      color: rgba(255, 255, 255, 0.411);
+      cursor: pointer;
+      transition: 0.5s;
+      padding-left: 15px;
+      padding-right: 15px;
+
+    }
+
+    #inner h3:hover {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      color: rgba(255, 255, 255, 0.938);
+
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+    }
+
+    #inner img:hover {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      fill: rgba(255, 255, 255, 0.938);
+      cursor: pointer;
+      opacity: 1;
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+    }
+
+    #inner img {
+      opacity: 0.5;
+      cursor: pointer;
+      transition: 0.45s;
+      padding-left: 15px;
+      padding-right: 15px;
+
+    }
+
+    .section {
+      height: 100%;
+    }
+
+    #divIntro {
+      color: #ffffff;
+      position: absolute;
+      height: 100%;
+      margin-right: 100px;
+      margin-left: 100px;
+
+      margin-top: -80px;
+      display: inline-flex;
+      /* text-align: center; */
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: center;
+    }
+  </style>
 
 </head>
-<body onload="notifyMe()">
 
-    <div style="text-align:center; padding:15px 0 15px 0">
-        <h1 style="color:midnightblue">
-            Fakultet Informacijskih Tehnologija
-        </h1>
+<body>
+
+  <div class="topnav" style="background-image: url('./navBg.png');">
+
+    <div class="topnav-right">
+      <a class="active" href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#search">Search</a>
+      <a href="#about">About</a>
     </div>
-    <div style="text-align:center"; padding:15px 0 15px 0">
-        <form>
-            <input style="width:123px" type="text" name="Inpime" id="InpName" placeholder="Ime" required autofocus />
-            <input style="width:123px" type="text" id="InpLaName" placeholder="Prezime" required />
-            <input style="width:123px" type="text" id="InpTitula" placeholder="Titula" required />
-            <input style="width:50px" type="text" id="InpGodina" placeholder="Godina" />
-            <div style="text-align:center; padding-top:15px">
-                <input id="Add" class="img" type="image" src="plus.png" height:32px" />
-            </div>
+  </div>
+  <div id="leftSide">
+    <div id="inner">
+      <a href="#section1" class="scroll_to">
+        <h3 class="active">01</h3>
+      </a>
+      <a href="#section2" class="scroll_to">
+        <h3>02</h3>
+      </a>
+      <a href="#section3" class="scroll_to">
+        <h3>03</h3>
+      </a>
+      <a href="#section4" class="scroll_to">
+        <h3>04</h3>
+      </a>
+      <a href="#section5" class="scroll_to">
+        <h3>05</h3>
+      </a>
 
-        </form>
-       
-    </div>
-    <div id="students">
-        <table id="Table" cellspacing="1" align="center">
-
-            <tr>
-
-                <th>
-                    Rbr
-                </th>
-                <th>
-                    Ime
-                </th>
-                <th width="150px">
-                    Prezime
-                </th>
-                <th>
-                    Titula
-                </th>
-                <th>
-                    Godina
-                </th>
-            </tr>
-
-
-
-        </table>
 
     </div>
-    <div style="text-align:center"; padding-top:15px">
-        <input id="btn" class="img" type="image" src="plus.png" height:32px" />
+  </div>
+  <div id="rightSide" style="background-image: url('./line.png')">
+
+    <div id="inner" style="background-color:rgb(5, 5, 5);padding-top: 25px;padding-bottom: 25px;">
+
+      <a href="https://github.com/emrahokic" target="blank">
+        
+        <img style="height: 30px;" src="./github.svg" />
+      </a>
+
+      <br>
+      <br>
+      <a href="https://www.linkedin.com/in/emrah-okic/" target="blank">
+
+        <img style="height: 30px;" src="./linkedin.svg" />
+      </a>
+
+      <br>
+      <br>
+      <a href="https://www.facebook.com/3mrah.ok1c/" target="blank">
+
+        <img style="height: 30px;" src="./facebook.svg" />
+      </a>
+      <br>
+
+      <br>
+      <a href="https://www.instagram.com/emrahokic/" target="blank">
+
+        <img style="height: 30px;" src="./instagram.svg" />
+      </a>
+
+
     </div>
-    <div style="text-align:center">
-	<a href="index2.html"><h1 style="color:midnightblue">Kalkulator</h1></a>
-	</div>
-	
-    <script src="Script1.js"></script>
-  
+
+  </div>
+  <div id="section1" style="margin-top: 90px;" class="section">
+
+    <img src="./mojaSlika.png" style="height: 100%;margin-left: 100px" />
+    <div style="height: 100%;display: inline-flex">
+
+      <div id="divIntro">
+
+        <h1 style="display: inline-block;font-size: 4vh;font-weight: 400;font-family: 'Libre Baskerville', serif;">Hello
+          I am</h1>
+        <h1 style="display: inline-block;font-weight: 900;font-size: 5vh;font-family: 'Libre Baskerville', serif;">Emrah
+          Okic</h1>
+        <h1 style="display: inline-block;font-weight: 400;font-size: 4vh;font-family: 'Libre Baskerville', serif;">
+          Software Engineer & Full-Stack Developer</h1>
+        <br>
+        <button
+          style="width: 250px;height: 60px;font-weight: 900; background-color: #ffffff;border-radius: 4px;cursor: pointer;;font-size: 2vh;font-family: 'Libre Baskerville', serif;">Hire
+          Me</button>
+      </div>
+    </div>
+  </div>
+  <div id="section2" class="section"></div>
+  <div id="section3" class="section"></div>
+  <div id="section4" class="section"></div>
+  <div id="section5" class="section"></div>
+
+  <script>
+    $('.scroll_to').click(function (e) {
+      var jump = $(this).attr('href');
+      var offset =0;
+    
+      var new_position = $(jump).offset();
+      $("#inner").children("a").children("h3").removeClass("active");
+      $(this).children('h3').addClass('active');
+      $('html, body').stop().animate({ scrollTop: new_position.top }, 600);
+      e.preventDefault();
+
+    });
+   
+  </script>
 </body>
-
 
 </html>
