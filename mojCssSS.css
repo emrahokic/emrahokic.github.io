@@ -1,0 +1,206 @@
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f100;
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background: #f1f1f110;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(249, 252, 71, 0.233);
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(230, 245, 16);
+    cursor: pointer;
+  }
+
+  body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding: 0px;
+    background-color: rgb(5, 5, 5);
+  }
+
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2;
+
+  }
+
+  @media screen and (max-width: 480px) {
+    #rightSide {
+      visibility: hidden;
+
+    }
+
+  }
+
+  .topnav a {
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    padding: 50px 16px 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-right: 2px;
+    transition: 0.4s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 0px 0px 0px 0px;
+
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .topnav a:hover {
+    color: #ffffff7c;
+    border-bottom: 1px solid white;
+    border-radius: 0px 0px 6px 6px;
+  }
+
+  .topnav a.active {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 0px 0px 6px 6px;
+  }
+
+  #leftSide h3.active {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: rgba(255, 255, 255, 0.938);
+
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+  }
+
+  .topnav-right {
+    float: right;
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+
+  #leftSide {
+    margin: 0px;
+    width: 100px;
+    z-index: 2;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.712);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+  }
+
+  #rightSide {
+    margin: 0px;
+    width: 100px;
+    right: 0;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(5, 5, 5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+
+  }
+
+  #inner {
+    width: 50%;
+    padding-top: 15px;
+    text-align: center;
+  }
+
+  #inner h3 {
+    color: rgba(255, 255, 255, 0.411);
+    cursor: pointer;
+    transition: 0.5s;
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+
+  #inner h3:hover {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: rgba(255, 255, 255, 0.938);
+
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+  }
+
+  #inner img:hover {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    fill: rgba(255, 255, 255, 0.938);
+    cursor: pointer;
+    opacity: 1;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+  }
+
+  #inner img {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.45s;
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+.mojaSlika{
+    width: 100%;
+    position: absolute;
+
+}
+.divIntroContainer{
+
+    height: 100%;
+    display: inline-flex;
+    position: relative;
+}
+  .section {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  #iconsRight{
+    visibility: visible;
+}
+  #divIntro {
+    color: #ffffff;
+    position: absolute;
+    height: 100%;
+    margin-left: 120px;
+
+    margin-top: -80px;
+    display: inline-flex;
+    /* text-align: center; */
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 1300px) {
+    div#rightSide {
+      visibility: collapse;
+    }
+  }

@@ -8,193 +8,13 @@
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Libre+Baskerville&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" media="screen and (min-width: 1000px)" href="./mojCssWS.css">
+    <link rel="stylesheet" media="screen and (max-width: 1000px)" href="./mojCssSS.css">
   <!-- The core Firebase JS SDK is always required and must be listed first -->
 
   <style>
     /* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f100; 
-}
-::-webkit-scrollbar-track:hover {
-  background: #f1f1f110; 
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(249, 252, 71, 0.233); 
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(230, 245, 16); 
-  cursor: pointer;
-}
-    body {
-      margin: 0px;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      padding: 0px;
-      background-color: rgb(5, 5, 5);
-    }
-
-    .topnav {
-      overflow: hidden;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 2;
-
-    }
-
-    @media screen and (max-width: 480px) {
-      #rightSide {
-        visibility: hidden;
-
-      }
-
-    }
-
-    .topnav a {
-      float: left;
-      color: #ffffff;
-      text-align: center;
-      padding: 50px 16px 10px 16px;
-      text-decoration: none;
-      font-size: 17px;
-      margin-right: 2px;
-      transition: 0.4s;
-      border-bottom: 1px solid rgba(255, 255, 255, 0);
-      border-radius: 0px 0px 0px 0px;
-
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .topnav a:hover {
-      color: #ffffff7c;
-      border-bottom: 1px solid white;
-      border-radius: 0px 0px 6px 6px;
-    }
-
-    .topnav a.active {
-      background-color: rgb(255, 255, 255);
-      color: rgb(0, 0, 0);
-      font-weight: bold;
-      border-radius: 0px 0px 6px 6px;
-    }
-
-    #leftSide h3.active {
-      padding-top: 15px;
-      padding-bottom: 15px;
-      color: rgba(255, 255, 255, 0.938);
-
-      border-top: 1px solid grey;
-      border-bottom: 1px solid grey;
-    }
-
-    .topnav-right {
-      float: right;
-      margin-right: 100px;
-      margin-left: 100px;
-    }
-
-    #leftSide {
-      margin: 0px;
-      width: 100px;
-      z-index: 2;
-      height: 100%;
-      background-color: rgba(5, 5, 5, 0.712);
-      position: fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-
-    }
-
-    #rightSide {
-      margin: 0px;
-      width: 100px;
-      right: 0;
-      height: 100%;
-      z-index: 2;
-      background-color: rgba(5, 5, 5);
-      position: fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      visibility: visible;
-    }
-
-    #inner {
-      width: 50%;
-      padding-top: 15px;
-      text-align: center;
-    }
-
-    #inner h3 {
-      color: rgba(255, 255, 255, 0.411);
-      cursor: pointer;
-      transition: 0.5s;
-      padding-left: 15px;
-      padding-right: 15px;
-
-    }
-
-    #inner h3:hover {
-      padding-top: 15px;
-      padding-bottom: 15px;
-      color: rgba(255, 255, 255, 0.938);
-
-      border-top: 1px solid grey;
-      border-bottom: 1px solid grey;
-    }
-
-    #inner img:hover {
-      padding-top: 15px;
-      padding-bottom: 15px;
-      fill: rgba(255, 255, 255, 0.938);
-      cursor: pointer;
-      opacity: 1;
-      border-top: 1px solid grey;
-      border-bottom: 1px solid grey;
-    }
-
-    #inner img {
-      opacity: 0.5;
-      cursor: pointer;
-      transition: 0.45s;
-      padding-left: 15px;
-      padding-right: 15px;
-
-    }
-
-    .section {
-      height: 100%;
-    }
-
-    #divIntro {
-      color: #ffffff;
-      position: absolute;
-      height: 100%;
-      margin-right: 100px;
-      margin-left: 100px;
-
-      margin-top: -80px;
-      display: inline-flex;
-      /* text-align: center; */
-      flex-direction: column;
-      /* align-items: center; */
-      justify-content: center;
-    }
+   
   </style>
 
 </head>
@@ -228,7 +48,39 @@
       <a href="#section5" class="scroll_to">
         <h3>05</h3>
       </a>
+      <div id="iconsRight">
 
+      <br>
+      <br> <br>
+      <br> <br>
+      <br> <br>
+      <br>
+      <a href="https://github.com/emrahokic" target="blank">
+
+        <img style="height: 30px;" src="./github.svg" />
+      </a>
+
+      <br>
+      <br>
+      <a href="https://www.linkedin.com/in/emrah-okic/" target="blank">
+
+        <img style="height: 30px;" src="./linkedin.svg" />
+      </a>
+
+      <br>
+      <br>
+      <a href="https://www.facebook.com/3mrah.ok1c/" target="blank">
+
+        <img style="height: 30px;" src="./facebook.svg" />
+      </a>
+      <br>
+
+      <br>
+      <a href="https://www.instagram.com/emrahokic/" target="blank">
+
+        <img style="height: 30px;" src="./instagram.svg" />
+      </a>
+    </div>
 
     </div>
   </div>
@@ -237,7 +89,7 @@
     <div id="inner" style="background-color:rgb(5, 5, 5);padding-top: 25px;padding-bottom: 25px;">
 
       <a href="https://github.com/emrahokic" target="blank">
-        
+
         <img style="height: 30px;" src="./github.svg" />
       </a>
 
@@ -268,8 +120,8 @@
   </div>
   <div id="section1" style="margin-top: 90px;" class="section">
 
-    <img src="./mojaSlika.png" style="height: 100%;margin-left: 100px" />
-    <div style="height: 100%;display: inline-flex">
+    <img src="./mojaSlika.png" class="mojaSlika"  />
+    <div class="divIntroContainer" style="">
 
       <div id="divIntro">
 
@@ -294,8 +146,8 @@
   <script>
     $('.scroll_to').click(function (e) {
       var jump = $(this).attr('href');
-      var offset =0;
-    
+      var offset = 0;
+
       var new_position = $(jump).offset();
       $("#inner").children("a").children("h3").removeClass("active");
       $(this).children('h3').addClass('active');
@@ -303,7 +155,7 @@
       e.preventDefault();
 
     });
-   
+
   </script>
 </body>
 
