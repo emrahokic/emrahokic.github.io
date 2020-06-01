@@ -177,6 +177,7 @@
 }
 #iconsRight{
     visibility: collapse;
+    display: none;
 }
 .divIntroContainer{
 
