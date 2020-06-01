@@ -38,7 +38,8 @@
     width: 100%;
     top: 0;
     z-index: 2;
-
+    visibility: collapse;
+    display: none;
   }
 
   @media screen and (max-width: 480px) {
